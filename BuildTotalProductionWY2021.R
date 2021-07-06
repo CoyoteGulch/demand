@@ -40,11 +40,18 @@ df21apr <- cbind(df21apr1, df21apr2)
 dfinal21 <- rbind(dfinal21, df21apr)
 #
 # Load the data for May into dataframe dfinal21
-df21apr1 <- read_excel("Plant Production WY2021.xlsm", sheet = "May", range = "A5:A35", col_names = "Month_Day")
-df21apr1$Month_Day <- as.Date(as.character((df21apr1$Month_Day)))
-df21apr2 <- read_excel("Plant Production WY2021.xlsm", sheet = "May", range = "AD5:AD35", col_names = "2021")
-df21apr <- cbind(df21apr1, df21apr2)
-dfinal21 <- rbind(dfinal21, df21apr)
+df21may1 <- read_excel("Plant Production WY2021.xlsm", sheet = "May", range = "A5:A35", col_names = "Month_Day")
+df21may1$Month_Day <- as.Date(as.character((df21may1$Month_Day)))
+df21may2 <- read_excel("Plant Production WY2021.xlsm", sheet = "May", range = "AD5:AD35", col_names = "2021")
+df21may <- cbind(df21may1, df21may2)
+dfinal21 <- rbind(dfinal21, df21may)
+#
+# Load the data for June into dataframe dfinal21
+df21jun1 <- read_excel("Plant Production WY2021.xlsm", sheet = "June", range = "A5:A34", col_names = "Month_Day")
+df21jun1$Month_Day <- as.Date(as.character((df21jun1$Month_Day)))
+df21jun2 <- read_excel("Plant Production WY2021.xlsm", sheet = "June", range = "AD5:AD34", col_names = "2021")
+df21jun <- cbind(df21jun1, df21jun2)
+dfinal21 <- rbind(dfinal21, df21jun)
 #
 
 # Load the mean, median, maximum, and minimum for each day from dfinal.csv the production data for 2010-2020
