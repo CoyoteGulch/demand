@@ -1,6 +1,5 @@
 # production2021_patchwork.R
 # Copyright: City of Thornton Water Resources
-#
 # Author: John Orr
 # Plot dfinal21 data
 # This program plots the production data from dfinal21.csv. Daily data points is shown as a point.
