@@ -21,7 +21,7 @@ dfinal21$Month_Day <- as.Date(paste("2021-", dfinal21$Month_Day, sep = ""))
 #
 # Build the plot
 p_a <- ggplot(dfinal21) + 
-  geom_point(aes(x = Month_Day, y = `2021`, color = "2021")) +
+  geom_point(aes(x = Month_Day, y = `2021`, color = "2021"), size = 2) +
   geom_line(aes(x = Month_Day, y = Mean, color="mean")) +
   geom_line(aes(x = Month_Day, y = Median, color="median")) +
   geom_line(aes(x = Month_Day, y = Maximum, color = "maximum")) +

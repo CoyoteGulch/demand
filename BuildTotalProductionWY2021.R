@@ -53,7 +53,13 @@ df21jun2 <- read_excel("Plant Production WY2021.xlsm", sheet = "June", range = "
 df21jun <- cbind(df21jun1, df21jun2)
 dfinal21 <- rbind(dfinal21, df21jun)
 #
-
+# Load the data for July into dataframe dfinal21
+df21jul1 <- read_excel("Plant Production WY2021.xlsm", sheet = "July", range = "A5:A35", col_names = "Month_Day")
+df21jul1$Month_Day <- as.Date(as.character((df21jul1$Month_Day)))
+df21jul2 <- read_excel("Plant Production WY2021.xlsm", sheet = "July", range = "AD5:AD35", col_names = "2021")
+df21jul <- cbind(df21jul1, df21jul2)
+dfinal21 <- rbind(dfinal21, df21jul)
+#
 # Load the mean, median, maximum, and minimum for each day from dfinal.csv the production data for 2010-2020
 #
 dfinal <- read.csv("dfinal.csv", header = TRUE, sep = ",", 
