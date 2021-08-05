@@ -30,7 +30,7 @@ p_2021 <- ggplot() +
   geom_line(data = filter(dfinal21a, measure != "y2021"),
             aes(y = data, x = Month_Day, color = measure)) +
   scale_color_manual(values = c("red", "yellow", "darkgreen", "darkviolet")) +
-  coord_cartesian(ylim = c(20,120)) + #changed range to include maximums 
+  coord_cartesian(ylim = c(20,150)) + #changed range to include maximums 
   theme(legend.title = element_blank()) + 
   scale_color_discrete(name = "Year") +
   scale_x_date(breaks = "1 month", minor_breaks = "1 day", labels=date_format("%b")) +
