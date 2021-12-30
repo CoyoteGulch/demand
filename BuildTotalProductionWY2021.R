@@ -5,6 +5,8 @@
 # located in the Accounting files on the S: share. Each month must be added to the program as the year passes.
 # The source Excel files are generated from treatment plant each day and must be in the same directory as the
 # program file.
+# Program files and data: S:\ID\WR\Supply and Demand Planning\Demand Forecasting\demand
+# 
 #
 # Load the necessary R libraries
 #
@@ -59,6 +61,21 @@ df21jul1$Month_Day <- as.Date(as.character((df21jul1$Month_Day)))
 df21jul2 <- read_excel("Plant Production WY2021.xlsm", sheet = "July", range = "AD5:AD35", col_names = "2021")
 df21jul <- cbind(df21jul1, df21jul2)
 dfinal21 <- rbind(dfinal21, df21jul)
+#
+# Load the data for August into dataframe dfinal21
+df21Aug1 <- read_excel("Plant Production WY2021.xlsm", sheet = "August", range = "A5:A35", col_names = "Month_Day")
+df21Aug1$Month_Day <- as.Date(as.character((df21Aug1$Month_Day)))
+df21Aug2 <- read_excel("Plant Production WY2021.xlsm", sheet = "August", range = "AD5:AD35", col_names = "2021")
+df21Aug <- cbind(df21Aug1, df21Aug2)
+dfinal21 <- rbind(dfinal21, df21Aug)
+#
+# Load the data for September into dataframe dfinal21
+df21Sep1 <- read_excel("Plant Production WY2021.xlsm", sheet = "September", range = "A5:A34", col_names = "Month_Day")
+df21Sep1$Month_Day <- as.Date(as.character((df21Sep1$Month_Day)))
+df21Sep2 <- read_excel("Plant Production WY2021.xlsm", sheet = "September", range = "AD5:AD34", col_names = "2021")
+df21Sep <- cbind(df21Sep1, df21Sep2)
+dfinal21 <- rbind(dfinal21, df21Sep)
+#
 #
 # Load the mean, median, maximum, and minimum for each day from dfinal.csv the production data for 2010-2020
 #
