@@ -15,6 +15,7 @@
 # Data is extracted in table format and then tidied using pivot_long.
 # Load the necessary R libraries
 #
+library(dplyr)
 library(readxl)
 #
 # Read the workbook and create a new dataframe with the values from Excel.
@@ -381,21 +382,29 @@ dfrwfinal <- rbind(dfrwfinal, dfrwdec)
 
 # The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
 # 
-dfrwfinal[2:13] <- dfrwfinal[2:13] * -1
+dfrwfinal[, 2:13] <- dfrwfinal[, 2:13] * -1
 #
-# Compute the mean for each day over all the years
+# Replace all NA values with 0
 #
-dfrwfinal$mean = apply(dfrwfinal[2:13], 1, mean, na.rm = TRUE)
+dfrwfinal[, 2:13] <- lapply(dfrwfinal[, 2:13], function(x) replace(x, is.na(x), 0))
 #
-# Compute the median for each day over all the years
+# Compute the mean for each day over all the years ignoring zeros
 #
-dfrwfinal$median = apply(dfrwfinal[2:13], 1, median, na.rm = TRUE)
+dfrwfinal$mean = apply(dfrwfinal[, 2:13], 1, function(x) mean(x[x>0]))
 #
-# Determine the maximum by day over all of the days
-dfrwfinal$maximum <- apply(dfrwfinal[2:13], 1, max, na.rm = TRUE)
+# Computing the mean on February 29th with all zero values for WGL  returns NaN. Hoping that this will clear up when there are not treatment values = 0 with all workbooks.
 # 
-# Determine the maximum by day over all of the days
-dfrwfinal$minimum <- apply(dfrwfinal[2:13], 1, min, na.rm = TRUE)
+# Compute the median for each day over all the years ignoring zeros
+#
+dfrwfinal$median = apply(dfrwfinal[, 2:13], 1, function(x) median(x[x>0]))
+#
+# Computing the median on February 29th with all zero values for WGL  returns NA. Hoping that this will clear up when there are not treatment values = 0 with all workbooks.
+#
+# Determine the maximum by day over all of the days ignoring zeros
+dfrwfinal$maximum <- apply(dfrwfinal[, 2:13], 1, function(x) max(x[x>=0]))
+# 
+# Determine the maximum by day over all of the days ignoring zeros
+dfrwfinal$minimum <- apply(dfrwfinal[, 2:13], 1, function(x) min(x[x>=0]))
 #
 
 View(dfrwfinal)
