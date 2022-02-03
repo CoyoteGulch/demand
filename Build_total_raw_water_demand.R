@@ -18,7 +18,7 @@
 library(dplyr)
 library(readxl)
 #
-# Read the workbook and create a new dataframe with the values from Excel.
+# Read the workbooks and create a new dataframe with the values from Excel.
 #
 # Load the data for January into dataframe dfrwfinal
 dfrwjan1 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "A72:A102", col_names = "month_day")
@@ -406,5 +406,47 @@ dfrwfinal$maximum <- apply(dfrwfinal[, 2:13], 1, function(x) max(x[x>=0]))
 # Determine the maximum by day over all of the days ignoring zeros
 dfrwfinal$minimum <- apply(dfrwfinal[, 2:13], 1, function(x) min(x[x>=0]))
 #
-
+# Used during testing
 View(dfrwfinal)
+#
+# Write the dataframe to a .csv file
+# write.csv(dfrwfinal,'dfrwfinal.csv', row.names = FALSE)
+#
+# Free up memory
+# rm(list = ls())
+# gc()
+# Read the workbooks and create a new dataframe with the values from Excel. I had to unlock the "Taniwith ESP2010.xlsm" column H for read_excel to return values. Also I checked "Show a zero in cells that have zero value". Save the file for changes to take effects.
+#
+# Load the data for January into dataframe dfrwtani
+dfrwtanijan1 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "A72:A102", col_names = "month_day")
+dfrwtanijan1$month_day <- as.Date(as.character((dfrwtanijan1$month_day)))
+dfrwtanijan2 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2010")
+dfrwtanifinal <- cbind(dfrwtanijan1, dfrwtanijan2)
+dfrwtanijan3 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2011")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan3)
+dfrwtanijan4 <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2012")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan4)
+dfrwtanijan5 <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2013")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan5)
+dfrwtanijan6 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2014")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan6)
+dfrwtanijan7 <- read_excel("TANIwith ESP2015.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2015")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan7)
+dfrwtanijan8 <- read_excel("TANIwith ESP2016.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2016")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan8)
+dfrwtanijan9 <- read_excel("TANIwith ESP2017.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2017")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan9)
+dfrwtanijan10 <- read_excel("TANIwithWSP2018.xlsm", sheet = "Summary", range = "K72:K102", col_names = "y_2018")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan10)
+dfrwtanijan11 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "K72:K102", col_names = "y_2019")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan11)
+dfrwtanijan12 <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K72:K102", col_names = "y_2020")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan12)
+dfrwtanijan13 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K72:K102", col_names = "y_2021")
+dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan13)
+#
+View(dfrwtanifinal)
+# x <- memory.size()
+# View(x)
+# y <- memory.size(max = TRUE)
+# View(y)
