@@ -714,6 +714,123 @@ dfrwtanisep13 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "
 dfrwtanisep <- cbind(dfrwtanisep, dfrwtanisep13)
 #
 dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtanisep)
+#
+# Load the data for October into dataframe dfrwtanifinal
+dfrwtanioct1 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "A355:A385", col_names = "month_day")
+dfrwtanioct1$month_day <- as.Date(as.character((dfrwtanioct1$month_day)))
+dfrwtanioct2 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H355:H385", col_names = "y_2010")
+dfrwtanioct <- cbind(dfrwtanioct1, dfrwtanioct2)
+dfrwtanioct3 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H355:H385", col_names = "y_2011")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct3)
+dfrwtanioct4 <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I355:I385", col_names = "y_2012")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct4)
+dfrwtanioct5 <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I355:I385", col_names = "y_2013")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct5)
+dfrwtanioct6 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I355:I385", col_names = "y_2014")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct6)
+dfrwtanioct7 <- read_excel("TANIwith ESP2015.xlsm", sheet = "Summary", range = "I355:I385", col_names = "y_2015")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct7)
+dfrwtanioct8 <- read_excel("TANIwith ESP2016.xlsm", sheet = "Summary", range = "I355:I385", col_names = "y_2016")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct8)
+dfrwtanioct9 <- read_excel("TANIwith ESP2017.xlsm", sheet = "Summary", range = "I355:I385", col_names = "y_2017")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct9)
+dfrwtanioct10 <- read_excel("TANIwithWSP2018.xlsm", sheet = "Summary", range = "K355:K385", col_names = "y_2018")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct10)
+dfrwtanioct11 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "K355:K385", col_names = "y_2019")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct11)
+dfrwtanioct12 <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K355:K385", col_names = "y_2020")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct12)
+dfrwtanioct13 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K355:K385", col_names = "y_2021")
+dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct13)
+#
+dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtanioct)
+#
+# Load the data for November into dataframe dfrwtanifinal
+dfrwtaninov1 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "A9:A38", col_names = "month_day")
+dfrwtaninov1$month_day <- as.Date(as.character((dfrwtaninov1$month_day)))
+dfrwtaninov2 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H9:H38", col_names = "y_2010")
+dfrwtaninov <- cbind(dfrwtaninov1, dfrwtaninov2)
+dfrwtaninov3 <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2011")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov3)
+dfrwtaninov4 <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2012")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov4)
+dfrwtaninov5 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2013")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov5)
+dfrwtaninov6 <- read_excel("TANIwith ESP2015.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2014")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov6)
+dfrwtaninov7 <- read_excel("TANIwith ESP2016.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2015")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov7)
+dfrwtaninov8 <- read_excel("TANIwith ESP2017.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2016")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov8)
+dfrwtaninov9 <- read_excel("TANIwithWSP2018.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2017")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov9)
+dfrwtaninov10 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2018")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov10)
+dfrwtaninov11 <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2019")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov11)
+dfrwtaninov12 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2020")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov12)
+dfrwtaninov13 <- read_excel("TANIwithWSP2022.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2021")
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov13)
+#
+dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtaninov)
+#
+# Load the data for December into dataframe dfrwtanifinal
+dfrwtanidec1 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "A40:A70", col_names = "month_day")
+dfrwtanidec1$month_day <- as.Date(as.character((dfrwtanidec1$month_day)))
+dfrwtanidec2 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H40:H70", col_names = "y_2010")
+dfrwtanidec <- cbind(dfrwtanidec1, dfrwtanidec2)
+dfrwtanidec3 <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2011")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec3)
+dfrwtanidec4 <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2012")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec4)
+dfrwtanidec5 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2013")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec5)
+dfrwtanidec6 <- read_excel("TANIwith ESP2015.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2014")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec6)
+dfrwtanidec7 <- read_excel("TANIwith ESP2016.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2015")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec7)
+dfrwtanidec8 <- read_excel("TANIwith ESP2017.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2016")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec8)
+dfrwtanidec9 <- read_excel("TANIwithWSP2018.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2017")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec9)
+dfrwtanidec10 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2018")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec10)
+dfrwtanidec11 <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2019")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec11)
+dfrwtanidec12 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2020")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec12)
+dfrwtanidec13 <- read_excel("TANIwithWSP2022.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2021")
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec13)
+#
+dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtanidec)
+#
+# The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
+# 
+dfrwtanifinal[, 2:13] <- dfrwtanifinal[, 2:13] * -1
+#
+# Replace all NA values with 0
+#
+dfrwtanifinal[, 2:13] <- lapply(dfrwtanifinal[, 2:13], function(x) replace(x, is.na(x), 0))
+#
+# Compute the mean for each day over all the years ignoring zeros
+#
+dfrwtanifinal$mean = apply(dfrwtanifinal[, 2:13], 1, function(x) mean(x[x>0]))
+#
+# Computing the mean on February 29th with all zero values for WGL  returns NaN. Hoping that this will clear up when there are not treatment values = 0 with all workbooks.
+# 
+# Compute the median for each day over all the years ignoring zeros
+#
+dfrwtanifinal$median = apply(dfrwtanifinal[, 2:13], 1, function(x) median(x[x>0]))
+#
+# Computing the median on February 29th with all zero values for WGL  returns NA. Hoping that this will clear up when there are not treatment values = 0 with all workbooks.
+#
+# Determine the maximum by day over all of the days ignoring zeros
+dfrwtanifinal$maximum <- apply(dfrwtanifinal[, 2:13], 1, function(x) max(x[x>=0]))
+# 
+# Determine the maximum by day over all of the days ignoring zeros
+dfrwtanifinal$minimum <- apply(dfrwtanifinal[, 2:13], 1, function(x) min(x[x>=0]))
+#
 
 #
 View(dfrwtanifinal)
