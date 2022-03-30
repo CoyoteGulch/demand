@@ -417,18 +417,6 @@ View(dfrwwglfinal)
 # Write the dataframe to a .csv file
 # write.csv(dfrwwglfinal,'dfrwwglfinal.csv', row.names = FALSE)
 #
-#
-# Add the West Gravel Lakes and Tani dataframes and store the result in dfrwfinal.
-# (Code from: https://stackoverflow.com/questions/30516094/r-add-two-data-frames-with-same-dimensions)
-# 
-dfrwfinal <- dfrwwglfinal %>% select(-month_day) %>% add(dfrwtanifinal %>% select(-month_day)) %>% mutate(type = dfrwtanifinal$type)
-#
-# Used during testing
-View(dfrwfinal)
-#Add the month_day column to dfrwfinal (code here: https://www.marsja.se/how-to-add-a-column-to-dataframe-in-r-with-tibble-dplyr/ and
-# here (https://www.marsja.se/how-to-add-a-column-to-dataframe-in-r-with-tibble-dplyr/)). order here (
-# https://stackoverflow.com/questions/5620885/how-does-one-reorder-columns-in-a-data-frame)
-
 # Read the workbooks and create a new dataframe with the values from Excel. I had to unlock the "Taniwith ESP2010.xlsm" column H for read_excel to return values. Also I checked "Show a zero in cells that have zero value". Save the file for changes to take effects. For some workbooks I had to enter zeroes in columns that had blank cells. The next lines of code build a dataframe named dfrwtanifinal that is merged with dfrwwglfinal (the
 # dataframe for West Gravel Lakes) and dfrwslfinal (the dataframe for Standley Lake)
 #
@@ -801,6 +789,24 @@ dfrwtanifinal[, 2:13] <- lapply(dfrwtanifinal[, 2:13], function(x) replace(x, is
 #
 View(dfrwtanifinal)
 #
+# Add the West Gravel Lakes and Tani dataframes and store the result in dfrwfinal.
+# (Code from: https://stackoverflow.com/questions/30516094/r-add-two-data-frames-with-same-dimensions)
+# 
+dfrwfinal <- dfrwwglfinal %>% select(-month_day) %>% add(dfrwtanifinal %>% select(-month_day)) %>% mutate(type = dfrwtanifinal$type)
+#
+#Add the month_day column to dfrwfinal (code here: https://www.marsja.se/how-to-add-a-column-to-dataframe-in-r-with-tibble-dplyr/ and
+# here (https://www.marsja.se/how-to-add-a-column-to-dataframe-in-r-with-tibble-dplyr/)). order here (
+# https://stackoverflow.com/questions/5620885/how-does-one-reorder-columns-in-a-data-frame)
+#
+dfrwfinal$month_day <- dfrwwglfinal$month_day
+#
+#Move the month_day column to the first column
+#
+dfrwfinal <- dfrwfinal %>% select(month_day, everything())
+#
+# Used during testing
+View(dfrwfinal)
+#
 # Read the workbooks and create a new dataframe with the values from Excel. Workbook name = Stan2010(4-party).xlsm.
 # The next lines of code build a dataframe named dfrwslfinal that is merged with dfrwwglfinal (the
 # dataframe for West Gravel Lakes) and dfrwslfinal (the dataframe for Standley Lake) into dfrwfinal.
@@ -810,59 +816,60 @@ dfrwsljan1 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "A7
 dfrwsljan1$month_day <- as.Date(as.character((dfrwtanijan1$month_day)))
 dfrwsljan2 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2010")
 dfrwslfinal <- cbind(dfrwsljan1, dfrwsljan2)
-# dfrwsljan3 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2011")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan3)
-# dfrwsljan4 <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2012")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan4)
-# dfrwsljan5 <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2013")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan5)
-# dfrwsljan6 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2014")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan6)
-# dfrwsljan7 <- read_excel("TANIwith ESP2015.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2015")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan7)
-# dfrwsljan8 <- read_excel("TANIwith ESP2016.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2016")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan8)
-# dfrwsljan9 <- read_excel("TANIwith ESP2017.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2017")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan9)
-# dfrwsljan10 <- read_excel("TANIwithWSP2018.xlsm", sheet = "Summary", range = "K72:K102", col_names = "y_2018")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan10)
-# dfrwsljan11 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "K72:K102", col_names = "y_2019")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan11)
-# dfrwsljan12 <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K72:K102", col_names = "y_2020")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan12)
-# dfrwsljan13 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K72:K102", col_names = "y_2021")
-# dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan13)
-# #
-# # Load the data for February into dataframe dfrwslfinal
-# dfrwslfeb1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A104:A132", col_names = "month_day")
-# # dfrwslfeb1 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "A104:A132", col_names = "month_day")
-# dfrwslfeb1$month_day <- as.Date(as.character((dfrwslfeb1$month_day)))
-# dfrwslfeb2 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H104:H132", col_names = "y_2010")
-# dfrwslfeb <- cbind(dfrwslfeb1, dfrwslfeb2)
-# dfrwslfeb3 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H104:H132", col_names = "y_2011")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb3)
-# dfrwslfeb4 <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I104:I132", col_names = "y_2012")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb4)
-# dfrwslfeb5 <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I104:I132", col_names = "y_2013")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb5)
-# dfrwslfeb6 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I104:I132", col_names = "y_2014")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb6)
-# dfrwslfeb7 <- read_excel("TANIwith ESP2015.xlsm", sheet = "Summary", range = "I104:I132", col_names = "y_2015")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb7)
-# dfrwslfeb8 <- read_excel("TANIwith ESP2016.xlsm", sheet = "Summary", range = "I104:I132", col_names = "y_2016")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb8)
-# dfrwslfeb9 <- read_excel("TANIwith ESP2017.xlsm", sheet = "Summary", range = "I104:I132", col_names = "y_2017")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb9)
-# dfrwslfeb10 <- read_excel("TANIwithWSP2018.xlsm", sheet = "Summary", range = "K104:K132", col_names = "y_2018")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb10)
-# dfrwslfeb11 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "K104:K132", col_names = "y_2019")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb11)
-# dfrwslfeb12 <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K104:K132", col_names = "y_2020")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb12)
-# dfrwslfeb13 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K104:K132", col_names = "y_2021")
-# dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb13)
-# #
-# dfrwslfinal <- rbind(dfrwslfinal, dfrwslfeb)
+dfrwsljan3 <- read_excel("Stan2011(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2011")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan3)
+dfrwsljan4 <- read_excel("Stan2012(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2012")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan4)
+dfrwsljan5 <- read_excel("Stan2013(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2013")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan5)
+dfrwsljan6 <- read_excel("Stan2014(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2014")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan6)
+dfrwsljan7 <- read_excel("Stan2015(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2015")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan7)
+dfrwsljan8 <- read_excel("Stan2016(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2016")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan8)
+dfrwsljan9 <- read_excel("Stan2017(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2017")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan9)
+dfrwsljan10 <- read_excel("Stan2018(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2018")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan10)
+dfrwsljan11 <- read_excel("Stan2019(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2019")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan11)
+dfrwsljan12 <- read_excel("Stan2020(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2020")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan12)
+dfrwsljan13 <- read_excel("Stan2021(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2021")
+dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan13)
+#
+# Load the data for February into dataframe dfrwslfinal
+#
+# To get February 29th in non-leap years read the data from WGL2012.xlsm, a leap year.
+dfrwslfeb1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A104:A132", col_names = "month_day")
+dfrwslfeb1$month_day <- as.Date(as.character((dfrwslfeb1$month_day)))
+dfrwslfeb2 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2010")
+dfrwslfeb <- cbind(dfrwslfeb1, dfrwslfeb2)
+dfrwslfeb3 <- read_excel("Stan2011(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2011")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb3)
+dfrwslfeb4 <- read_excel("Stan2012(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2012")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb4)
+dfrwslfeb5 <- read_excel("Stan2013(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2013")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb5)
+dfrwslfeb6 <- read_excel("Stan2014(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2014")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb6)
+dfrwslfeb7 <- read_excel("Stan2015(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2015")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb7)
+dfrwslfeb8 <- read_excel("Stan2016(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2016")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb8)
+dfrwslfeb9 <- read_excel("Stan2017(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2017")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb9)
+dfrwslfeb10 <- read_excel("Stan2018(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2018")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb10)
+dfrwslfeb11 <- read_excel("Stan2019(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2019")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb11)
+dfrwslfeb12 <- read_excel("Stan2020(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2020")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb12)
+dfrwslfeb13 <- read_excel("Stan2021(decree).xlsm", sheet = "Summary", range = "R104:R132", col_names = "y_2021")
+dfrwslfeb <- cbind(dfrwslfeb, dfrwslfeb13)
+#
+dfrwslfinal <- rbind(dfrwslfinal, dfrwslfeb)
 # #
 # # Load the data for March into dataframe dfrwslfinal
 # dfrwslmar1 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "A134:A164", col_names = "month_day")
@@ -1165,12 +1172,12 @@ dfrwslfinal <- cbind(dfrwsljan1, dfrwsljan2)
 # dfrwslfinal <- rbind(dfrwslfinal, dfrwsldec)
 # #
 # # The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
-# # 
-# dfrwslfinal[, 2:13] <- dfrwslfinal[, 2:13] * -1
-# #
-# # Replace all NA values with 0
-# #
-# dfrwslfinal[, 2:13] <- lapply(dfrwslfinal[, 2:13], function(x) replace(x, is.na(x), 0))
+# 
+#dfrwslfinal[, 2:13] <- dfrwslfinal[, 2:13] * -1
+#
+# Replace all NA values with 0
+#
+#dfrwslfinal[, 2:13] <- lapply(dfrwslfinal[, 2:13], function(x) replace(x, is.na(x), 0))
 # #
 # # Compute the mean for each day over all the years ignoring zeros
 # #
