@@ -1,5 +1,6 @@
 # Build_total_raw_water_demand.R
-# This programs reads the Excel Accounting files, WGLXXXX and StanXXXX to get metered data into a Tidy format for plotting
+# This programs reads the Excel Accounting files, WGLXXXX, TANIwithWSPxxxx and StanXXXX to get metered data into a Tidy format for plotting
+# 
 # Email from Mary:
 # The pumping numbers are located:
 # WGL Sum Tab column D
@@ -10,6 +11,7 @@
 #
 # Another consideration, but no metered number is the actual backwash from the plants to the backwash ponds (we only have the meter number from the backwash ponds to WGL. If you think it will be useful the backwash from the ponds to WGL is located WGL Sum Tab column E.
 # End of email from Mary
+# 
 # The relevant files are copied from the Accounting share S:\ID\WR\Accounting\ to the Supply and Demand Planning share S:\ID\WR\Supply and Demand Planning\Demand Forecasting\demand\ to avoid the possibility of corrupting the historical Accounting files.
 #
 # Data is extracted in table format and then tidied using pivot_long.
@@ -23,7 +25,7 @@ library(tibble)
 # Read the workbooks and create a new dataframe with the values from Excel. Start with the West 
 # Gravel Lakes, then South Tani, then Standley Lake.
 #
-# Load the data for January into dataframe dfrwfinal
+# Load the data for January into dataframe dfrwwglfinal
 dfrwwgljan1 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "A72:A102", col_names = "month_day")
 dfrwwgljan1$month_day <- as.Date(as.character((dfrwwgljan1$month_day)))
 dfrwwgljan2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D72:D102", col_names = "y_2010")
@@ -423,7 +425,8 @@ View(dfrwwglfinal)
 # Load the data for January into dataframe dfrwtanifinal
 dfrwtanijan1 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "A72:A102", col_names = "month_day")
 dfrwtanijan1$month_day <- as.Date(as.character((dfrwtanijan1$month_day)))
-dfrwtanijan2 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2010")
+dfrwtanijan2a <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2010")
+#dfrwtanijan2b <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2010")
 dfrwtanifinal <- cbind(dfrwtanijan1, dfrwtanijan2)
 dfrwtanijan3 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2011")
 dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan3)
@@ -1111,74 +1114,94 @@ dfrwsloct <- cbind(dfrwsloct, dfrwsloct13)
 #
 dfrwslfinal <- rbind(dfrwslfinal, dfrwsloct)
 #
-# Load the data for November into dataframe dfrwslfinal
-# dfrwslnov1 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "A9:A38", col_names = "month_day")
-# dfrwslnov1$month_day <- as.Date(as.character((dfrwslnov1$month_day)))
-# dfrwslnov2 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "H9:H38", col_names = "y_2010")
-# dfrwslnov <- cbind(dfrwslnov1, dfrwslnov2)
-# dfrwslnov3 <- read_excel("Stan2011(decree).xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2011")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov3)
-# dfrwslnov4 <- read_excel("Stan2012(decree).xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2012")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov4)
-# dfrwslnov5 <- read_excel("Stan2013(decree).xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2013")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov5)
-# dfrwslnov6 <- read_excel("Stan20104(decree).xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2014")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov6)
-# dfrwslnov7 <- read_excel("Stan2015(decree).xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2015")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov7)
-# dfrwslnov8 <- read_excel("Stan2016(decree).xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2016")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov8)
-# dfrwslnov9 <- read_excel("Stan2017(decree).xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2017")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov9)
-# dfrwslnov10 <- read_excel("Stan2018(decree).xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2018")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov10)
-# dfrwslnov11 <- read_excel("Stan2019(decree).xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2019")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov11)
-# dfrwslnov12 <- read_excel("Stan2020(decree).xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2020")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov12)
-# dfrwslnov13 <- read_excel("Stan2021(decree).xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2021")
-# dfrwslnov <- cbind(dfrwslnov, dfrwslnov13)
-# #
-# dfrwslfinal <- rbind(dfrwslfinal, dfrwslnov)
+# Load the data for November into dataframe dfrwslfinal. The Accounting is on a water year basin so to get 
+# November and December the data is in the next water year. e.g. for calendar year 2010 November and
+# December are in the water year 2011 workbook.
+# 
+dfrwslnov1 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "A9:A38", col_names = "month_day")
+dfrwslnov1$month_day <- as.Date(as.character((dfrwslnov1$month_day)))
+dfrwslnov2 <- read_excel("Stan2011(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2010")
+dfrwslnov <- cbind(dfrwslnov1, dfrwslnov2)
+dfrwslnov3 <- read_excel("Stan2012(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2011")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov3)
+dfrwslnov4 <- read_excel("Stan2013(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2012")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov4)
+dfrwslnov5 <- read_excel("Stan2014(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2013")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov5)
+dfrwslnov6 <- read_excel("Stan2015(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2014")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov6)
+dfrwslnov7 <- read_excel("Stan2016(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2015")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov7)
+dfrwslnov8 <- read_excel("Stan2017(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2016")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov8)
+dfrwslnov9 <- read_excel("Stan2018(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2017")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov9)
+dfrwslnov10 <- read_excel("Stan2019(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2018")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov10)
+dfrwslnov11 <- read_excel("Stan2020(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2019")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov11)
+dfrwslnov12 <- read_excel("Stan2021(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2020")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov12)
+dfrwslnov13 <- read_excel("Stan2022(decree).xlsm", sheet = "Summary", range = "R9:R38", col_names = "y_2021")
+dfrwslnov <- cbind(dfrwslnov, dfrwslnov13)
 #
-# Load the data for December into dataframe dfrwslfinal
-# dfrwsldec1 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "A40:A70", col_names = "month_day")
-# dfrwsldec1$month_day <- as.Date(as.character((dfrwsldec1$month_day)))
-# dfrwsldec2 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H40:H70", col_names = "y_2010")
-# dfrwsldec <- cbind(dfrwsldec1, dfrwsldec2)
-# dfrwsldec3 <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2011")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec3)
-# dfrwsldec4 <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2012")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec4)
-# dfrwsldec5 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2013")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec5)
-# dfrwsldec6 <- read_excel("TANIwith ESP2015.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2014")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec6)
-# dfrwsldec7 <- read_excel("TANIwith ESP2016.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2015")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec7)
-# dfrwsldec8 <- read_excel("TANIwith ESP2017.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2016")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec8)
-# dfrwsldec9 <- read_excel("TANIwithWSP2018.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2017")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec9)
-# dfrwsldec10 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2018")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec10)
-# dfrwsldec11 <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2019")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec11)
-# dfrwsldec12 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2020")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec12)
-# dfrwsldec13 <- read_excel("TANIwithWSP2022.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2021")
-# dfrwsldec <- cbind(dfrwsldec, dfrwsldec13)
-# #
-# dfrwslfinal <- rbind(dfrwslfinal, dfrwsldec)
-# #
+dfrwslfinal <- rbind(dfrwslfinal, dfrwslnov)
+#
+# Load the data for December into dataframe dfrwslfinal. The Accounting is on a water year basin so to get 
+# November and December the data is in the next water year. e.g. for calendar year 2010 November and
+# December are in the water year 2011 workbook.
+#  
+dfrwsldec1 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "A40:A70", col_names = "month_day")
+dfrwsldec1$month_day <- as.Date(as.character((dfrwsldec1$month_day)))
+dfrwsldec2 <- read_excel("Stan2011(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2010")
+dfrwsldec <- cbind(dfrwsldec1, dfrwsldec2)
+dfrwsldec3 <- read_excel("Stan2012(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2011")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec3)
+dfrwsldec4 <- read_excel("Stan2013(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2012")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec4)
+dfrwsldec5 <- read_excel("Stan2014(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2013")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec5)
+dfrwsldec6 <- read_excel("Stan2015(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2014")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec6)
+dfrwsldec7 <- read_excel("Stan2016(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2015")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec7)
+dfrwsldec8 <- read_excel("Stan2017(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2016")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec8)
+dfrwsldec9 <- read_excel("Stan2018(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2017")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec9)
+dfrwsldec10 <- read_excel("Stan2019(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2018")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec10)
+dfrwsldec11 <- read_excel("Stan2020(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2019")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec11)
+dfrwsldec12 <- read_excel("Stan2021(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2020")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec12)
+dfrwsldec13 <- read_excel("Stan2022(decree).xlsm", sheet = "Summary", range = "R40:R70", col_names = "y_2021")
+dfrwsldec <- cbind(dfrwsldec, dfrwsldec13)
+#
+dfrwslfinal <- rbind(dfrwslfinal, dfrwsldec)
+#
 # # The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
 # 
-#dfrwslfinal[, 2:13] <- dfrwslfinal[, 2:13] * -1
+dfrwslfinal[, 2:13] <- dfrwslfinal[, 2:13] * -1
 #
 # Replace all NA values with 0
 #
-#dfrwslfinal[, 2:13] <- lapply(dfrwslfinal[, 2:13], function(x) replace(x, is.na(x), 0))
-# #
+dfrwslfinal[, 2:13] <- lapply(dfrwslfinal[, 2:13], function(x) replace(x, is.na(x), 0))
+#
+View(dfrwslfinal)
+#
+# Add dfrwslfinal and dfrwfinal to complete the data set. Values are added because dfrwfinal is the summary for all draws on raw water.
+# 
+dfrwfinal <- dfrwfinal %>% select(-month_day) %>% add(dfrwslfinal %>% select(-month_day)) %>% mutate(type = dfrwslfinal$type)
+#dfrwfinal <- dfrwwglfinal %>% select(-month_day) %>% add(dfrwtanifinal %>% select(-month_day)) %>% mutate(type = dfrwtanifinal$type)
+#
+# add the month_day column to dfrwfinal
+# 
+dfrwfinal$month_day <- dfrwwglfinal$month_day
+#
+# Reorder dfrwfinal columns to move month_day to the first column
+dfrwfinal <- dfrwfinal %>% select(month_day, everything())
+#
 # # Compute the mean for each day over all the years ignoring zeros
 # #
 # #dfrwslfinal$mean = apply(dfrwslfinal[, 2:13], 1, function(x) mean(x[x>0]))
@@ -1199,4 +1222,4 @@ dfrwslfinal <- rbind(dfrwslfinal, dfrwsloct)
 # #
 # 
 # #
-View(dfrwslfinal)
+
