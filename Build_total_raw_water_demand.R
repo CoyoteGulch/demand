@@ -425,9 +425,21 @@ View(dfrwwglfinal)
 # Load the data for January into dataframe dfrwtanifinal
 dfrwtanijan1 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "A72:A102", col_names = "month_day")
 dfrwtanijan1$month_day <- as.Date(as.character((dfrwtanijan1$month_day)))
+#
+# Read in column H (to wes brown wtp), cbind with dfrwtanijan1
 dfrwtanijan2a <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2010")
-#dfrwtanijan2b <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2010")
+dfrwtanijan2a <- cbind(dfrwtanijan1, dfrwtanijan2a)
+#
+# Read in column I (to thorton wtp), cbind with dfrwtanijan1
+dfrwtanijan2b <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2010")
+dfrwtanijan2b <- cbind(dfrwtanijan1, dfrwtanijan2b)
+#
+# Add dfrwtanijan2a and dfrwtanijan2b together, this drops the month_day column
+dfrwtanijan2 <- dfrwtanijan2a %>% select(-month_day) %>% add(dfrwtanijan2b %>% select(-month_day)) %>% mutate(type = dfrwtanijan2b$type)
+#
+# Create dfrwtanifinal for subsequent extracts
 dfrwtanifinal <- cbind(dfrwtanijan1, dfrwtanijan2)
+#
 dfrwtanijan3 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2011")
 dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan3)
 dfrwtanijan4 <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2012")
