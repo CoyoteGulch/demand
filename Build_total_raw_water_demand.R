@@ -440,10 +440,36 @@ dfrwtanijan2 <- dfrwtanijan2a %>% select(-month_day) %>% add(dfrwtanijan2b %>% s
 # Create dfrwtanifinal for subsequent extracts
 dfrwtanifinal <- cbind(dfrwtanijan1, dfrwtanijan2)
 #
-dfrwtanijan3 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2011")
+# Read the data from column H and combine with dfrwtanijan1 
+dfrwtanijan3a <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2011")
+dfrwtanijan3a <- cbind(dfrwtanijan1, dfrwtanijan3a)
+#
+# Read the data from column I and combine it with dfrwtanijan1
+dfrwtanijan3b <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2011")
+dfrwtanijan3b <- cbind(dfrwtanijan1, dfrwtanijan3b)
+#
+# Add dfrwtanijan3a and dfrwtanijan3b together. This drops the month_day column
+dfrwtanijan3 <- dfrwtanijan3a %>% select(-month_day) %>% add(dfrwtanijan3b %>% select(-month_day)) %>% mutate(type = dfrwtanijan3b$type)
+#
+# Add dfrwtanijan3 to dfrfinal (2011 january values)
 dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan3)
-dfrwtanijan4 <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2012")
+#
+# Extract 2012 data. Pattern is same as 2011 except now extract column I (to wes brown) and column J (to thornton WTP)
+dfrwtanijan4a <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2012")
+dfrwtanijan4a <- cbind(dfrwtanijan1, dfrwtanijan4a) # need month_day to add to dfrwtanifinal
+#
+dfrwtanijan4b <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "J72:J102", col_names = "y_2012")
+dfrwtanijan4b <- cbind(dfrwtanijan1, dfrwtanijan4b) # need month_day to add to dfrwtanifinal
+#
+dfrwtanijan4 <- dfrwtanijan4a %>% select(-month_day) %>% add(dfrwtanijan4b %>% select(-month_day)) %>% mutate(type = dfrwtanijan4b$type)
 dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan4)
+
+#### Start here the code above works
+
+
+
+
+
 dfrwtanijan5 <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2013")
 dfrwtanifinal <- cbind(dfrwtanifinal, dfrwtanijan5)
 dfrwtanijan6 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2014")
