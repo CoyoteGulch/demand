@@ -987,6 +987,106 @@ dfrwtanioct <- cbind(dfrwtanioct, dfrwtanioct13)
 #
 dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtanioct)
 #
+# Load the data for November into dataframe dfrwtanifinal. The workbooks are on a water year basis (November through October)
+# so to get, for example, November 2010 the data is in the 2011 workbook.
+# Load the data for 2010 columns H and I
+dfrwtaninov1 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "A9:A38", col_names = "month_day")
+#
+dfrwtaninov2a <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H9:H38", col_names = "y_2010")
+dfrwtaninov2a <- cbind(dfrwtaninov1, dfrwtaninov2a)
+#
+dfrwtaninov2b <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2010")
+dfrwtaninov2b <- cbind(dfrwtaninov1, dfrwtaninov2b)
+#
+dfrwtaninov2 <- dfrwtaninov2a %>% select(-month_day) %>% add(dfrwtaninov2b %>% select(-month_day)) %>% mutate(type = dfrwtaninov2b$type)
+#
+dfrwtaninov <- cbind(dfrwtaninov1, dfrwtaninov2)
+#
+# Load the data for 2011 from columns I and J
+dfrwtaninov3a <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2011")
+dfrwtaninov3a <- cbind(dfrwtaninov1, dfrwtaninov3a)
+#
+dfrwtaninov3b <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "J9:J38", col_names = "y_2011")
+dfrwtaninov3b <- cbind(dfrwtaninov1, dfrwtaninov3b)
+#
+dfrwtaninov3 <- dfrwtaninov3a %>% select(-month_day) %>% add(dfrwtaninov3b %>% select(-month_day)) %>% mutate(type = dfrwtaninov3b$type)
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov3)
+#
+# Load the data for 2012 from columns I and J
+dfrwtaninov4a <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2012")
+dfrwtaninov4a <- cbind(dfrwtaninov1, dfrwtaninov4a)
+#
+dfrwtaninov4b <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "J9:J38", col_names = "y_2012")
+dfrwtaninov4b <- cbind(dfrwtaninov1, dfrwtaninov4b)
+#
+dfrwtaninov4 <- dfrwtaninov4a %>% select(-month_day) %>% add(dfrwtaninov4b %>% select(-month_day)) %>% mutate(type = dfrwtaninov4b$type)
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov4)
+#
+# Load the data for 2013 from column I
+dfrwtaninov5 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2013")
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov5)
+#
+# Load the data for 2014 from column I
+dfrwtaninov6 <- read_excel("TANIwith ESP2015.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2014")
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov6)
+#
+# Load the data for 2015 from column I
+dfrwtaninov7 <- read_excel("TANIwith ESP2016.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2015")
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov7)
+#
+# Load the data for 2016 from column I
+dfrwtaninov8 <- read_excel("TANIwith ESP2017.xlsm", sheet = "Summary", range = "I9:I38", col_names = "y_2016")
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov8)
+#
+# Load the data for 2017 from column K
+dfrwtaninov9 <- read_excel("TANIwithWSP2018.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2017")
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov9)
+#
+# Load the data for 2018 from column K
+dfrwtaninov10 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2018")
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov10)
+#
+# Load the data for 2019 from columns K and P
+dfrwtaninov11a <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2019")
+dfrwtaninov11a <- cbind(dfrwtaninov1, dfrwtaninov11a)
+#
+dfrwtaninov11b <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "P9:P38", col_names = "y_2019")
+dfrwtaninov11b <- cbind(dfrwtaninov1, dfrwtaninov11b)
+#
+dfrwtaninov11 <- dfrwtaninov11a %>% select(-month_day) %>% add(dfrwtaninov11b %>% select(-month_day)) %>% mutate(type = dfrwtaninov11b$type)
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov11)
+#
+# Load the data for 2020 from column K and P
+dfrwtaninov12a <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2020")
+dfrwtaninov12a <- cbind(dfrwtaninov1, dfrwtaninov12a)
+#
+dfrwtaninov12b <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "P9:P38", col_names = "y_2020")
+dfrwtaninov12b <- cbind(dfrwtaninov1, dfrwtaninov12b)
+#
+dfrwtaninov12 <- dfrwtaninov12a %>% select(-month_day) %>% add(dfrwtaninov12b %>% select(-month_day)) %>% mutate(type = dfrwtaninov12b$type)
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov12)
+#
+# Load the data for 2021 from column K
+dfrwtaninov13 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K355:K385", col_names = "y_2021")
+#
+dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov13)
+#
+dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtaninov)
+#
+
+
+
+
 
 #
 # Read the workbooks and create a new dataframe with the values from Excel. Start with the West 
