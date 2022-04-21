@@ -1076,14 +1076,121 @@ dfrwtaninov12 <- dfrwtaninov12a %>% select(-month_day) %>% add(dfrwtaninov12b %>
 #
 dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov12)
 #
-# Load the data for 2021 from column K
-dfrwtaninov13 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K355:K385", col_names = "y_2021")
+# Load the data for 2021 from columns K and P
+dfrwtaninov13a <- read_excel("TANIwithWSP2022.xlsm", sheet = "Summary", range = "K9:K38", col_names = "y_2021")
+dfrwtaninov13a <- cbind(dfrwtaninov1, dfrwtaninov13a)
+#
+dfrwtaninov13b <- read_excel("TANIwithWSP2022.xlsm", sheet = "Summary", range = "P9:P38", col_names = "y_2021")
+dfrwtaninov13b <- cbind(dfrwtaninov1, dfrwtaninov13b)
+#
+dfrwtaninov13 <- dfrwtaninov13a %>% select(-month_day) %>% add(dfrwtaninov13b %>% select(-month_day)) %>% mutate(type = dfrwtaninov13b$type)
 #
 dfrwtaninov <- cbind(dfrwtaninov, dfrwtaninov13)
 #
 dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtaninov)
 #
-
+# Load the data for December into dataframe dfrwtanifinal. The workbooks are on a water year basis (November through October)
+# so to get, for example, November 2010 the data is in the 2011 workbook.
+# Load the data for 2010 columns H and I
+dfrwtanidec1 <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "A40:A70", col_names = "month_day")
+#
+dfrwtanidec2a <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H40:H70", col_names = "y_2010")
+dfrwtanidec2a <- cbind(dfrwtanidec1, dfrwtanidec2a)
+#
+dfrwtanidec2b <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2010")
+dfrwtanidec2b <- cbind(dfrwtanidec1, dfrwtanidec2b)
+#
+dfrwtanidec2 <- dfrwtanidec2a %>% select(-month_day) %>% add(dfrwtanidec2b %>% select(-month_day)) %>% mutate(type = dfrwtanidec2b$type)
+#
+dfrwtanidec <- cbind(dfrwtanidec1, dfrwtanidec2)
+#
+# Load the data for 2011 from columns I and J
+dfrwtanidec3a <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2011")
+dfrwtanidec3a <- cbind(dfrwtanidec1, dfrwtanidec3a)
+#
+dfrwtanidec3b <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "J40:J70", col_names = "y_2011")
+dfrwtanidec3b <- cbind(dfrwtanidec1, dfrwtanidec3b)
+#
+dfrwtanidec3 <- dfrwtanidec3a %>% select(-month_day) %>% add(dfrwtanidec3b %>% select(-month_day)) %>% mutate(type = dfrwtanidec3b$type)
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec3)
+#
+# Load the data for 2012 from columns I and J
+dfrwtanidec4a <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2012")
+dfrwtanidec4a <- cbind(dfrwtanidec1, dfrwtanidec4a)
+#
+dfrwtanidec4b <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "J40:J70", col_names = "y_2012")
+dfrwtanidec4b <- cbind(dfrwtanidec1, dfrwtanidec4b)
+#
+dfrwtanidec4 <- dfrwtanidec4a %>% select(-month_day) %>% add(dfrwtanidec4b %>% select(-month_day)) %>% mutate(type = dfrwtanidec4b$type)
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec4)
+#
+# Load the data for 2013 from column I
+dfrwtanidec5 <- read_excel("TANIwith ESP2014.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2013")
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec5)
+#
+# Load the data for 2014 from column I
+dfrwtanidec6 <- read_excel("TANIwith ESP2015.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2014")
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec6)
+#
+# Load the data for 2015 from column I
+dfrwtanidec7 <- read_excel("TANIwith ESP2016.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2015")
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec7)
+#
+# Load the data for 2016 from column I
+dfrwtanidec8 <- read_excel("TANIwith ESP2017.xlsm", sheet = "Summary", range = "I40:I70", col_names = "y_2016")
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec8)
+#
+# Load the data for 2017 from column K
+dfrwtanidec9 <- read_excel("TANIwithWSP2018.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2017")
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec9)
+#
+# Load the data for 2018 from column K
+dfrwtanidec10 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2018")
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec10)
+#
+# Load the data for 2019 from columns K and P
+dfrwtanidec11a <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2019")
+dfrwtanidec11a <- cbind(dfrwtanidec1, dfrwtanidec11a)
+#
+dfrwtanidec11b <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "P40:P70", col_names = "y_2019")
+dfrwtanidec11b <- cbind(dfrwtanidec1, dfrwtanidec11b)
+#
+dfrwtanidec11 <- dfrwtanidec11a %>% select(-month_day) %>% add(dfrwtanidec11b %>% select(-month_day)) %>% mutate(type = dfrwtanidec11b$type)
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec11)
+#
+# Load the data for 2020 from column K and P
+dfrwtanidec12a <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2020")
+dfrwtanidec12a <- cbind(dfrwtanidec1, dfrwtanidec12a)
+#
+dfrwtanidec12b <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "P40:P70", col_names = "y_2020")
+dfrwtanidec12b <- cbind(dfrwtanidec1, dfrwtanidec12b)
+#
+dfrwtanidec12 <- dfrwtanidec12a %>% select(-month_day) %>% add(dfrwtanidec12b %>% select(-month_day)) %>% mutate(type = dfrwtanidec12b$type)
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec12)
+#
+# Load the data for 2021 from columns K and P
+dfrwtanidec13a <- read_excel("TANIwithWSP2022.xlsm", sheet = "Summary", range = "K40:K70", col_names = "y_2021")
+dfrwtanidec13a <- cbind(dfrwtanidec1, dfrwtanidec13a)
+#
+dfrwtanidec13b <- read_excel("TANIwithWSP2022.xlsm", sheet = "Summary", range = "P40:P70", col_names = "y_2021")
+dfrwtanidec13b <- cbind(dfrwtanidec1, dfrwtanidec13b)
+#
+dfrwtanidec13 <- dfrwtanidec13a %>% select(-month_day) %>% add(dfrwtanidec13b %>% select(-month_day)) %>% mutate(type = dfrwtanidec13b$type)
+#
+dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec13)
+#
+dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtanidec)
+#
 
 
 
