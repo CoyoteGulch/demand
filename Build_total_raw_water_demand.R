@@ -1243,31 +1243,44 @@ dfrwwglfinal <- cbind(dfrwwglfinal, dfrwwgljan12)
 dfrwwgljan13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D72:D102", col_names = "y_2021")
 dfrwwglfinal <- cbind(dfrwwglfinal, dfrwwgljan13)
 #
-# Load the data for February into dataframe dfrwwglfinal
+# Load the data for February into dataframe dfrwwglfinal all data comes from column D.
+# Load month_day from WGL2012.xlsm for February 29th.
 dfrwwglfeb1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A104:A132", col_names = "month_day")
 dfrwwglfeb1$month_day <- as.Date(as.character((dfrwwglfeb1$month_day)))
+#
 dfrwwglfeb2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2010")
 dfrwwglfeb <- cbind(dfrwwglfeb1, dfrwwglfeb2)
+#
 dfrwwglfeb3 <- read_excel("WGL2011.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2011")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb3)
+#
 dfrwwglfeb4 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2012")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb4)
+#
 dfrwwglfeb5 <- read_excel("WGL2013.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2013")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb5)
+#
 dfrwwglfeb6 <- read_excel("WGL2014.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2014")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb6)
+#
 dfrwwglfeb7 <- read_excel("WGL2015.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2015")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb7)
+#
 dfrwwglfeb8 <- read_excel("WGL2016.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2016")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb8)
+#
 dfrwwglfeb9 <- read_excel("WGL2017.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2017")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb9)
+#
 dfrwwglfeb10 <- read_excel("WGL2018.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2018")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb10)
+#
 dfrwwglfeb11 <- read_excel("WGL2019.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2019")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb11)
+#
 dfrwwglfeb12 <- read_excel("WGL2020.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2020")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb12)
+#
 dfrwwglfeb13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2021")
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb13)
 #
@@ -1276,28 +1289,40 @@ dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwglfeb)
 # Load the data for March into dataframe dfrwwglfinal
 dfrwwglmar1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A134:A164", col_names = "month_day")
 dfrwwglmar1$month_day <- as.Date(as.character((dfrwwglmar1$month_day)))
+#
 dfrwwglmar2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2010")
 dfrwwglmar <- cbind(dfrwwglmar1, dfrwwglmar2)
+#
 dfrwwglmar3 <- read_excel("WGL2011.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2011")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar3)
+#
 dfrwwglmar4 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2012")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar4)
+#
 dfrwwglmar5 <- read_excel("WGL2013.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2013")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar5)
+#
 dfrwwglmar6 <- read_excel("WGL2014.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2014")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar6)
+#
 dfrwwglmar7 <- read_excel("WGL2015.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2015")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar7)
+#
 dfrwwglmar8 <- read_excel("WGL2016.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2016")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar8)
+#
 dfrwwglmar9 <- read_excel("WGL2017.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2017")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar9)
+#
 dfrwwglmar10 <- read_excel("WGL2018.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2018")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar10)
+#
 dfrwwglmar11 <- read_excel("WGL2019.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2019")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar11)
+#
 dfrwwglmar12 <- read_excel("WGL2020.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2020")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar12)
+#
 dfrwwglmar13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D134:D164", col_names = "y_2021")
 dfrwwglmar <- cbind(dfrwwglmar, dfrwwglmar13)
 #
@@ -1306,28 +1331,40 @@ dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwglmar)
 # Load the data for April into dataframe dfrwwglfinal
 dfrwwglapr1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A166:A195", col_names = "month_day")
 dfrwwglapr1$month_day <- as.Date(as.character((dfrwwglapr1$month_day)))
+#
 dfrwwglapr2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2010")
 dfrwwglapr <- cbind(dfrwwglapr1, dfrwwglapr2)
+#
 dfrwwglapr3 <- read_excel("WGL2011.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2011")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr3)
+#
 dfrwwglapr4 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2012")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr4)
+#
 dfrwwglapr5 <- read_excel("WGL2013.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2013")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr5)
+#
 dfrwwglapr6 <- read_excel("WGL2014.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2014")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr6)
+#
 dfrwwglapr7 <- read_excel("WGL2015.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2015")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr7)
+#
 dfrwwglapr8 <- read_excel("WGL2016.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2016")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr8)
+#
 dfrwwglapr9 <- read_excel("WGL2017.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2017")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr9)
+#
 dfrwwglapr10 <- read_excel("WGL2018.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2018")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr10)
+#
 dfrwwglapr11 <- read_excel("WGL2019.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2019")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr11)
+#
 dfrwwglapr12 <- read_excel("WGL2020.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2020")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr12)
+#
 dfrwwglapr13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D166:D195", col_names = "y_2021")
 dfrwwglapr <- cbind(dfrwwglapr, dfrwwglapr13)
 #
@@ -1336,28 +1373,40 @@ dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwglapr)
 # Load the data for May into dataframe dfrwwglfinal
 dfrwwglmay1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A197:A227", col_names = "month_day")
 dfrwwglmay1$month_day <- as.Date(as.character((dfrwwglmay1$month_day)))
+#
 dfrwwglmay2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2010")
 dfrwwglmay <- cbind(dfrwwglmay1, dfrwwglmay2)
+#
 dfrwwglmay3 <- read_excel("WGL2011.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2011")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay3)
+#
 dfrwwglmay4 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2012")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay4)
+#
 dfrwwglmay5 <- read_excel("WGL2013.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2013")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay5)
+#
 dfrwwglmay6 <- read_excel("WGL2014.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2014")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay6)
+#
 dfrwwglmay7 <- read_excel("WGL2015.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2015")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay7)
+#
 dfrwwglmay8 <- read_excel("WGL2016.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2016")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay8)
+#
 dfrwwglmay9 <- read_excel("WGL2017.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2017")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay9)
+#
 dfrwwglmay10 <- read_excel("WGL2018.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2018")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay10)
+#
 dfrwwglmay11 <- read_excel("WGL2019.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2019")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay11)
+#
 dfrwwglmay12 <- read_excel("WGL2020.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2020")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay12)
+#
 dfrwwglmay13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D197:D227", col_names = "y_2021")
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay13)
 #
@@ -1366,28 +1415,40 @@ dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwglmay)
 # Load the data for June into dataframe dfrwwglfinal
 dfrwwgljun1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A229:A258", col_names = "month_day")
 dfrwwgljun1$month_day <- as.Date(as.character((dfrwwgljun1$month_day)))
+#
 dfrwwgljun2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2010")
 dfrwwgljun <- cbind(dfrwwgljun1, dfrwwgljun2)
+#
 dfrwwgljun3 <- read_excel("WGL2011.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2011")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun3)
+#
 dfrwwgljun4 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2012")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun4)
+#
 dfrwwgljun5 <- read_excel("WGL2013.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2013")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun5)
+#
 dfrwwgljun6 <- read_excel("WGL2014.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2014")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun6)
+#
 dfrwwgljun7 <- read_excel("WGL2015.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2015")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun7)
+#
 dfrwwgljun8 <- read_excel("WGL2016.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2016")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun8)
+#
 dfrwwgljun9 <- read_excel("WGL2017.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2017")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun9)
+#
 dfrwwgljun10 <- read_excel("WGL2018.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2018")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun10)
+#
 dfrwwgljun11 <- read_excel("WGL2019.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2019")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun11)
+#
 dfrwwgljun12 <- read_excel("WGL2020.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2020")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun12)
+#
 dfrwwgljun13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D229:D258", col_names = "y_2021")
 dfrwwgljun <- cbind(dfrwwgljun, dfrwwgljun13)
 #
@@ -1396,28 +1457,40 @@ dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwgljun)
 # Load the data for July into dataframe dfrwwglfinal
 dfrwwgljul1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A260:A290", col_names = "month_day")
 dfrwwgljul1$month_day <- as.Date(as.character((dfrwwgljul1$month_day)))
+#
 dfrwwgljul2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2010")
 dfrwwgljul <- cbind(dfrwwgljul1, dfrwwgljul2)
+#
 dfrwwgljul3 <- read_excel("WGL2011.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2011")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul3)
+#
 dfrwwgljul4 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2012")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul4)
+#
 dfrwwgljul5 <- read_excel("WGL2013.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2013")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul5)
+#
 dfrwwgljul6 <- read_excel("WGL2014.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2014")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul6)
+#
 dfrwwgljul7 <- read_excel("WGL2015.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2015")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul7)
+#
 dfrwwgljul8 <- read_excel("WGL2016.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2016")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul8)
+#
 dfrwwgljul9 <- read_excel("WGL2017.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2017")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul9)
+#
 dfrwwgljul10 <- read_excel("WGL2018.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2018")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul10)
+#
 dfrwwgljul11 <- read_excel("WGL2019.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2019")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul11)
+#
 dfrwwgljul12 <- read_excel("WGL2020.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2020")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul12)
+#
 dfrwwgljul13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D260:D290", col_names = "y_2021")
 dfrwwgljul <- cbind(dfrwwgljul, dfrwwgljul13)
 #
@@ -1426,28 +1499,40 @@ dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwgljul)
 # Load the data for August into dataframe dfrwwglfinal
 dfrwwglaug1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A292:A322", col_names = "month_day")
 dfrwwglaug1$month_day <- as.Date(as.character((dfrwwglaug1$month_day)))
+#
 dfrwwglaug2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2010")
 dfrwwglaug <- cbind(dfrwwglaug1, dfrwwglaug2)
+#
 dfrwwglaug3 <- read_excel("WGL2011.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2011")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug3)
+#
 dfrwwglaug4 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2012")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug4)
+#
 dfrwwglaug5 <- read_excel("WGL2013.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2013")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug5)
+#
 dfrwwglaug6 <- read_excel("WGL2014.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2014")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug6)
+#
 dfrwwglaug7 <- read_excel("WGL2015.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2015")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug7)
+#
 dfrwwglaug8 <- read_excel("WGL2016.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2016")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug8)
+#
 dfrwwglaug9 <- read_excel("WGL2017.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2017")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug9)
+#
 dfrwwglaug10 <- read_excel("WGL2018.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2018")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug10)
+#
 dfrwwglaug11 <- read_excel("WGL2019.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2019")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug11)
+#
 dfrwwglaug12 <- read_excel("WGL2020.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2020")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug12)
+#
 dfrwwglaug13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D292:D322", col_names = "y_2021")
 dfrwwglaug <- cbind(dfrwwglaug, dfrwwglaug13)
 #
