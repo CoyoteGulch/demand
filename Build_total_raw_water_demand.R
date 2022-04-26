@@ -1541,28 +1541,40 @@ dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwglaug)
 # Load the data for September into dataframe dfrwwglfinal
 dfrwwglsep1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A324:A353", col_names = "month_day")
 dfrwwglsep1$month_day <- as.Date(as.character((dfrwwglsep1$month_day)))
+#
 dfrwwglsep2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2010")
 dfrwwglsep <- cbind(dfrwwglsep1, dfrwwglsep2)
+#
 dfrwwglsep3 <- read_excel("WGL2011.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2011")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep3)
+#
 dfrwwglsep4 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2012")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep4)
+#
 dfrwwglsep5 <- read_excel("WGL2013.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2013")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep5)
+#
 dfrwwglsep6 <- read_excel("WGL2014.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2014")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep6)
+#
 dfrwwglsep7 <- read_excel("WGL2015.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2015")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep7)
+#
 dfrwwglsep8 <- read_excel("WGL2016.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2016")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep8)
+#
 dfrwwglsep9 <- read_excel("WGL2017.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2017")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep9)
+#
 dfrwwglsep10 <- read_excel("WGL2018.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2018")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep10)
+#
 dfrwwglsep11 <- read_excel("WGL2019.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2019")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep11)
+#
 dfrwwglsep12 <- read_excel("WGL2020.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2020")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep12)
+#
 dfrwwglsep13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D324:D353", col_names = "y_2021")
 dfrwwglsep <- cbind(dfrwwglsep, dfrwwglsep13)
 #
