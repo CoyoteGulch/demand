@@ -28,16 +28,19 @@ library(tibble)
 #  dfrwtanifinal that is merged with dfrwwglfinal (the
 # dataframe for West Gravel Lakes) and dfrwslfinal (the dataframe for Standley Lake)
 #
-# Load the data for January taNI LAKES into dataframe dfrwtanifinal
+# Load the data for January TANI LAKES into dataframe dfrwtanifinal
 dfrwtanijan1 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "A72:A102", col_names = "month_day")
 dfrwtanijan1$month_day <- as.Date(as.character((dfrwtanijan1$month_day)))
 #
-# Read in column H (to wes brown wtp), cbind with dfrwtanijan1
+# Read in column H (to wes brown wtp), cbind with dfrwtanijan1, replace NA values with 0 because NA + a number = NA
+# so when adding the 2 dataframes NAs will be the result.
 dfrwtanijan2a <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2010")
+dfrwtanijan2a[, 1] <- lapply(dfrwtanijan2a[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijan2a <- cbind(dfrwtanijan1, dfrwtanijan2a)
 #
 # Read in column I (to thorton wtp), cbind with dfrwtanijan1
 dfrwtanijan2b <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2010")
+dfrwtanijan2b[, 1] <- lapply(dfrwtanijan2b[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijan2b <- cbind(dfrwtanijan1, dfrwtanijan2b)
 #
 # Add dfrwtanijan2a and dfrwtanijan2b together, this drops the month_day column
@@ -46,12 +49,14 @@ dfrwtanijan2 <- dfrwtanijan2a %>% select(-month_day) %>% add(dfrwtanijan2b %>% s
 # Create dfrwtanijan for subsequent extracts
 dfrwtanijan <- cbind(dfrwtanijan1, dfrwtanijan2)
 #
-# Read the data for 2011 from column H and combine with dfrwtanijan1 for dates
+# Read the data for 2011 from column H and combine with dfrwtanijan1 for dates, replace NA with 0
 dfrwtanijan3a <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H72:H102", col_names = "y_2011")
+dfrwtanijan3a[, 1] <- lapply(dfrwtanijan3a[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijan3a <- cbind(dfrwtanijan1, dfrwtanijan3a)
 #
 # Read the data from column I and combine it with dfrwtanijan1
 dfrwtanijan3b <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2011")
+dfrwtanijan3b[, 1] <- lapply(dfrwtanijan3b[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijan3b <- cbind(dfrwtanijan1, dfrwtanijan3b)
 #
 # Add dfrwtanijan3a and dfrwtanijan3b together. This drops the month_day column
@@ -61,10 +66,13 @@ dfrwtanijan3 <- dfrwtanijan3a %>% select(-month_day) %>% add(dfrwtanijan3b %>% s
 dfrwtanijan <- cbind(dfrwtanijan, dfrwtanijan3)
 #
 # Extract 2012 data. Pattern is same as 2011 except now extract column I (to wes brown) and column J (to thornton WTP)
+# and replace NA with 0.
 dfrwtanijan4a <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I72:I102", col_names = "y_2012")
+dfrwtanijan4a[, 1] <- lapply(dfrwtanijan4a[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijan4a <- cbind(dfrwtanijan1, dfrwtanijan4a) # need month_day to add to dfrwtanifinal
 #
 dfrwtanijan4b <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "J72:J102", col_names = "y_2012")
+dfrwtanijan4b[, 1] <- lapply(dfrwtanijan4b[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijan4b <- cbind(dfrwtanijan1, dfrwtanijan4b) # need month_day to add to dfrwtanifinal
 #
 dfrwtanijan4 <- dfrwtanijan4a %>% select(-month_day) %>% add(dfrwtanijan4b %>% select(-month_day)) %>% mutate(type = dfrwtanijan4b$type)
