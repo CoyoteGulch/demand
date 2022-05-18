@@ -719,20 +719,16 @@ dfrwtanijun <- cbind(dfrwtanijun, dfrwtanijun13)
 #
 dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtanijun)
 #
-
-
-dfrwtanijun <- cbind(dfrwtanijun, dfrwtanijun13)
-#
-dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtanijun)
-#
 # Load the data for July into dataframe dfrwtanifinal
 # Load the data for 2010 columns H and I
 dfrwtanijul1 <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "A260:A290", col_names = "month_day")
 #
 dfrwtanijul2a <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "H260:H290", col_names = "y_2010")
+dfrwtanijul2a[, 1] <- lapply(dfrwtanijul2a[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijul2a <- cbind(dfrwtanijul1, dfrwtanijul2a)
 #
 dfrwtanijul2b <- read_excel("TANIwith ESP2010.xlsm", sheet = "Summary", range = "I260:I290", col_names = "y_2010")
+dfrwtanijul2b[, 1] <- lapply(dfrwtanijul2b[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijul2b <- cbind(dfrwtanijul1, dfrwtanijul2b)
 #
 dfrwtanijul2 <- dfrwtanijul2a %>% select(-month_day) %>% add(dfrwtanijul2b %>% select(-month_day)) %>% mutate(type = dfrwtanijul2b$type)
@@ -741,9 +737,11 @@ dfrwtanijul <- cbind(dfrwtanijul1, dfrwtanijul2)
 #
 # Load the data for 2011 from columns H and I
 dfrwtanijul3a <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "H260:H290", col_names = "y_2011")
+dfrwtanijul3a[, 1] <- lapply(dfrwtanijul3a[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijul3a <- cbind(dfrwtanijul1, dfrwtanijul3a)
 #
 dfrwtanijul3b <- read_excel("TANIwith ESP2011.xlsm", sheet = "Summary", range = "I260:I290", col_names = "y_2011")
+dfrwtanijul3b[, 1] <- lapply(dfrwtanijul3b[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijul3b <- cbind(dfrwtanijul1, dfrwtanijul3b)
 #
 dfrwtanijul3 <- dfrwtanijul3a %>% select(-month_day) %>% add(dfrwtanijul3b %>% select(-month_day)) %>% mutate(type = dfrwtanijul3b$type)
@@ -752,9 +750,11 @@ dfrwtanijul <- cbind(dfrwtanijul, dfrwtanijul3)
 #
 # Load the data for 2012 from columns I and J
 dfrwtanijul4a <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "I260:I290", col_names = "y_2012")
+dfrwtanijul4a[, 1] <- lapply(dfrwtanijul4a[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijul4a <- cbind(dfrwtanijul1, dfrwtanijul4a)
 #
 dfrwtanijul4b <- read_excel("TANIwith ESP2012.xlsm", sheet = "Summary", range = "J260:J290", col_names = "y_2012")
+dfrwtanijul4b[, 1] <- lapply(dfrwtanijul4b[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijul4b <- cbind(dfrwtanijul1, dfrwtanijul4b)
 #
 dfrwtanijul4 <- dfrwtanijul4a %>% select(-month_day) %>% add(dfrwtanijul4b %>% select(-month_day)) %>% mutate(type = dfrwtanijul4b$type)
@@ -763,9 +763,11 @@ dfrwtanijul <- cbind(dfrwtanijul, dfrwtanijul4)
 #
 # Load the data for 2013 from columns I and J
 dfrwtanijul5a <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "I260:I290", col_names = "y_2013")
+dfrwtanijul5a[, 1] <- lapply(dfrwtanijul5a[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijul5a <- cbind(dfrwtanijul1, dfrwtanijul5a)
 #
 dfrwtanijul5b <- read_excel("TANIwith ESP2013.xlsm", sheet = "Summary", range = "J260:J290", col_names = "y_2013")
+dfrwtanijul5b[, 1] <- lapply(dfrwtanijul5b[, 1], function(x) replace(x, is.na(x), 0))
 dfrwtanijul5b <- cbind(dfrwtanijul1, dfrwtanijul5b)
 #
 dfrwtanijul5 <- dfrwtanijul5a %>% select(-month_day) %>% add(dfrwtanijul5b %>% select(-month_day)) %>% mutate(type = dfrwtanijul5b$type)
