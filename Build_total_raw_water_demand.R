@@ -804,13 +804,29 @@ dfrwtanijul11 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "
 #
 dfrwtanijul <- cbind(dfrwtanijul, dfrwtanijul11)
 #
-# Load the data for 2020 from column K
-dfrwtanijul12 <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K260:K290", col_names = "y_2020")
+# Load the data for August 2020 from column K and P
+dfrwtanijul12a <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K260:K290", col_names = "y_2020")
+dfrwtanijul12a[, 1] <- lapply(dfrwtanijul12a[, 1], function(x) replace(x, is.na(x), 0))
+dfrwtanijul12a <- cbind(dfrwtanijul1, dfrwtanijul12a)
+#
+dfrwtanijul12b <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "P260:P290", col_names = "y_2020")
+dfrwtanijul12b[, 1] <- lapply(dfrwtanijul12b[, 1], function(x) replace(x, is.na(x), 0))
+dfrwtanijul12b <- cbind(dfrwtanijul1, dfrwtanijul12b)
+#
+dfrwtanijul12 <- dfrwtanijul12a %>% select(-month_day) %>% add(dfrwtanijul12b %>% select(-month_day)) %>% mutate(type = dfrwtanijul12b$type)
 #
 dfrwtanijul <- cbind(dfrwtanijul, dfrwtanijul12)
 #
-# Load the data for June 2021 from column K
-dfrwtanijul13 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K260:K290", col_names = "y_2021")
+# Load the data for 2021 from column K
+dfrwtanijul13a <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K260:K290", col_names = "y_2021")
+dfrwtanijul13a[, 1] <- lapply(dfrwtanijul13a[, 1], function(x) replace(x, is.na(x), 0))
+dfrwtanijul13a <- cbind(dfrwtanijul1, dfrwtanijul13a)
+#
+dfrwtanijul13b <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "P260:P290", col_names = "y_2021")
+dfrwtanijul13b[, 1] <- lapply(dfrwtanijul13b[, 1], function(x) replace(x, is.na(x), 0))
+dfrwtanijul13b <- cbind(dfrwtanijul1, dfrwtanijul13b)
+#
+dfrwtanijul13 <- dfrwtanijul13a %>% select(-month_day) %>% add(dfrwtanijul13b %>% select(-month_day)) %>% mutate(type = dfrwtanijul13b$type)
 #
 dfrwtanijul <- cbind(dfrwtanijul, dfrwtanijul13)
 #
@@ -901,17 +917,51 @@ dfrwtaniaug11 <- read_excel("TANIwithWSP2019.xlsm", sheet = "Summary", range = "
 #
 dfrwtaniaug <- cbind(dfrwtaniaug, dfrwtaniaug11)
 #
-# Load the data for 2020 from column K
+# Load the data for 2020 from column K and P
+dfrwtaniaug12a <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K292:K322", col_names = "y_2020")
+dfrwtaniaug12a[, 1] <- lapply(dfrwtaniaug12a[, 1], function(x) replace(x, is.na(x), 0))
+dfrwtaniaug12a <- cbind(dfrwtaniaug1, dfrwtaniaug12a)
+#
+dfrwtaniaug12b <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "P292:P322", col_names = "y_2020")
+dfrwtaniaug12b[, 1] <- lapply(dfrwtaniaug12b[, 1], function(x) replace(x, is.na(x), 0))
+dfrwtaniaug12b <- cbind(dfrwtaniaug1, dfrwtaniaug12b)
+#
+dfrwtaniaug12 <- dfrwtaniaug12a %>% select(-month_day) %>% add(dfrwtaniaug12b %>% select(-month_day)) %>% mutate(type = dfrwtaniaug12b$type)
+#
+dfrwtaniaug <- cbind(dfrwtaniaug, dfrwtaniaug12)
+#
+# Load the data for 2021 from columnS K and P
+dfrwtaniaug13a <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K292:K322", col_names = "y_2021")
+dfrwtaniaug13a[, 1] <- lapply(dfrwtaniaug13a[, 1], function(x) replace(x, is.na(x), 0))
+dfrwtaniaug13a <- cbind(dfrwtaniaug1, dfrwtaniaug13a)
+#
+dfrwtaniaug13b <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "P292:P322", col_names = "y_2021")
+dfrwtaniaug13b[, 1] <- lapply(dfrwtaniaug13b[, 1], function(x) replace(x, is.na(x), 0))
+dfrwtaniaug13b <- cbind(dfrwtaniaug1, dfrwtaniaug13b)
+#
+dfrwtaniaug13 <- dfrwtaniaug13a %>% select(-month_day) %>% add(dfrwtaniaug13b %>% select(-month_day)) %>% mutate(type = dfrwtaniaug13b$type)
+#
+dfrwtaniaug <- cbind(dfrwtaniaug, dfrwtaniaug13)
+#
+dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtaniaug)
+#
+### START HERE SEPTEMBER, FIX 2020 AND 2021 FOR PROPER COLUMNS. ###
+
+
+# Load the data for 2020 from column K and P
 dfrwtaniaug12 <- read_excel("TANIwithWSP2020.xlsm", sheet = "Summary", range = "K292:K322", col_names = "y_2020")
 #
 dfrwtaniaug <- cbind(dfrwtaniaug, dfrwtaniaug12)
 #
-# Load the data for June 2021 from column K
+# Load the data for 2021 from column K
 dfrwtaniaug13 <- read_excel("TANIwithWSP2021.xlsm", sheet = "Summary", range = "K292:K322", col_names = "y_2021")
 #
 dfrwtaniaug <- cbind(dfrwtaniaug, dfrwtaniaug13)
 #
 dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtaniaug)
+#
+#### START HERE. NEED TO MODIFY TO INCORPORATE VALUES FROM COLUMNS K AND P IN 2021 BACK THROUGH AT LEAST JULY. 
+#### REVIEW 2020 FOR WHEN THE TREATMENT PLANT CAME ONLINE.
 #
 # Load the data for September into dataframe dfrwtanifinal
 # Load the data for 2010 columns H and I
