@@ -1401,7 +1401,6 @@ dfrwtanidec <- cbind(dfrwtanidec, dfrwtanidec13)
 #
 dfrwtanifinal <- rbind(dfrwtanifinal, dfrwtanidec)
 #
-#
 # Read the workbooks and create a new dataframe dfrwwglfinal for West Gravel Lakes and merge it with dfrwtanifinal
 # Load the data for 2010 into dataframe dfrwwglfinal
 dfrwwgljan1 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "A72:A102", col_names = "month_day")
@@ -1453,6 +1452,7 @@ dfrwwglfinal <- cbind(dfrwwglfinal, dfrwwgljan12)
 dfrwwgljan13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D72:D102", col_names = "y_2021")
 dfrwwglfinal <- cbind(dfrwwglfinal, dfrwwgljan13)
 #
+### START HERE. vERIFY DATA. ###
 # Load the data for February into dataframe dfrwwglfinal all data comes from column D.
 # Load month_day from WGL2012.xlsm for February 29th.
 dfrwwglfeb1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A104:A132", col_names = "month_day")
