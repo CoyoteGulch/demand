@@ -1452,46 +1452,57 @@ dfrwwglfinal <- cbind(dfrwwglfinal, dfrwwgljan12)
 dfrwwgljan13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D72:D102", col_names = "y_2021")
 dfrwwglfinal <- cbind(dfrwwglfinal, dfrwwgljan13)
 #
-### START HERE. vERIFY DATA. ###
 # Load the data for February into dataframe dfrwwglfinal all data comes from column D.
-# Load month_day from WGL2012.xlsm for February 29th.
+# Load month_day from WGL2012.xlsm for February 29th. Need to replace NAs with 0 because of the 29th.
 dfrwwglfeb1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A104:A132", col_names = "month_day")
 dfrwwglfeb1$month_day <- as.Date(as.character((dfrwwglfeb1$month_day)))
 #
 dfrwwglfeb2 <- read_excel("WGL2010.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2010")
+dfrwwglfeb2[, 1] <- lapply(dfrwwglfeb2[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb1, dfrwwglfeb2)
 #
 dfrwwglfeb3 <- read_excel("WGL2011.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2011")
+dfrwwglfeb3[, 1] <- lapply(dfrwwglfeb3[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb3)
 #
 dfrwwglfeb4 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2012")
+dfrwwglfeb4[, 1] <- lapply(dfrwwglfeb4[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb4)
 #
 dfrwwglfeb5 <- read_excel("WGL2013.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2013")
+dfrwwglfeb5[, 1] <- lapply(dfrwwglfeb5[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb5)
 #
 dfrwwglfeb6 <- read_excel("WGL2014.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2014")
+dfrwwglfeb6[, 1] <- lapply(dfrwwglfeb6[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb6)
 #
 dfrwwglfeb7 <- read_excel("WGL2015.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2015")
+dfrwwglfeb7[, 1] <- lapply(dfrwwglfeb7[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb7)
 #
 dfrwwglfeb8 <- read_excel("WGL2016.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2016")
+dfrwwglfeb8[, 1] <- lapply(dfrwwglfeb8[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb8)
 #
 dfrwwglfeb9 <- read_excel("WGL2017.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2017")
+dfrwwglfeb9[, 1] <- lapply(dfrwwglfeb9[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb9)
 #
 dfrwwglfeb10 <- read_excel("WGL2018.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2018")
+dfrwwglfeb10[, 1] <- lapply(dfrwwglfeb10[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb10)
 #
 dfrwwglfeb11 <- read_excel("WGL2019.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2019")
+dfrwwglfeb11[, 1] <- lapply(dfrwwglfeb11[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb11)
 #
 dfrwwglfeb12 <- read_excel("WGL2020.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2020")
+dfrwwglfeb12[, 1] <- lapply(dfrwwglfeb12[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb12)
 #
 dfrwwglfeb13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D104:D132", col_names = "y_2021")
+dfrwwglfeb13[, 1] <- lapply(dfrwwglfeb13[, 1], function(x) replace(x, is.na(x), 0))
 dfrwwglfeb <- cbind(dfrwwglfeb, dfrwwglfeb13)
 #
 dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwglfeb)
