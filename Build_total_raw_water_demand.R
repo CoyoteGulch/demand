@@ -1632,7 +1632,7 @@ dfrwwglmay13 <- read_excel("WGL2021.xlsm", sheet = "Sum", range = "D197:D227", c
 dfrwwglmay <- cbind(dfrwwglmay, dfrwwglmay13)
 #
 dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwglmay)
-#
+
 # Load the data for June into dataframe dfrwwglfinal
 dfrwwgljun1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A229:A258", col_names = "month_day")
 dfrwwgljun1$month_day <- as.Date(as.character((dfrwwgljun1$month_day)))
@@ -1843,6 +1843,7 @@ dfrwwgloct <- cbind(dfrwwgloct, dfrwwgloct13)
 #
 dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwgloct)
 #
+### START HERE ###
 # Load the data for November into dataframe dfrwwglfinal. NOTE that the workbooks conform to the DWR water year and therefore run from November in one year through October the following year, so in order to get November and December for e.g. "2010" you need the WGL2011 workbook.
 dfrwwglnov1 <- read_excel("WGL2012.xlsm", sheet = "Sum", range = "A9:A38", col_names = "month_day")
 dfrwwglnov1$month_day <- as.Date(as.character((dfrwwglnov1$month_day)))
