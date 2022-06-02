@@ -1927,7 +1927,8 @@ dfrwwgldec <- cbind(dfrwwgldec, dfrwwgldec13)
 #
 dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwgldec)
 #
-
+### START HERE CHECK STANDLEY LAKE DATA AND CODE ###
+#
 # The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
 # 
 # dfrwwglfinal[, 2:13] <- dfrwwglfinal[, 2:13] * -1
