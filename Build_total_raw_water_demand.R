@@ -2057,6 +2057,8 @@ dfrwslmar <- cbind(dfrwslmar, dfrwslmar13)
 #
 dfrwslfinal <- rbind(dfrwslfinal, dfrwslmar)
 #
+####  START HERE ###
+#
 # Load the data for April into dataframe dfrwslfinal
 dfrwslapr1 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "A166:A195", col_names = "month_day")
 dfrwslapr1$month_day <- as.Date(as.character((dfrwslapr1$month_day)))
