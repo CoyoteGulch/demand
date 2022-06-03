@@ -1927,46 +1927,11 @@ dfrwwgldec <- cbind(dfrwwgldec, dfrwwgldec13)
 #
 dfrwwglfinal <- rbind(dfrwwglfinal, dfrwwgldec)
 #
-### START HERE CHECK STANDLEY LAKE DATA AND CODE ###
-#
-# The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
-# 
-# dfrwwglfinal[, 2:13] <- dfrwwglfinal[, 2:13] * -1
-#
-# Replace all NA values with 0
-#
-# dfrwwglfinal[, 2:13] <- lapply(dfrwwglfinal[, 2:13], function(x) replace(x, is.na(x), 0))
-#
-# Compute the mean for each day over all the years ignoring zeros
-#
-#dfrwwglfinal$mean = apply(dfrwwglfinal[, 2:13], 1, function(x) mean(x[x>0]))
-#
-# Computing the mean on February 29th with all zero values for WGL  returns NaN. Hoping that this will clear up when there are not treatment values = 0 with all workbooks.
-# 
-# Compute the median for each day over all the years ignoring zeros
-#
-#dfrwwglfinal$median = apply(dfrwwglfinal[, 2:13], 1, function(x) median(x[x>0]))
-#
-# Computing the median on February 29th with all zero values for WGL  returns NA. Hoping that this will clear up when there are not treatment values = 0 with all workbooks.
-#
-# Determine the maximum by day over all of the days ignoring zeros
-#dfrwwglfinal$maximum <- apply(dfrwwglfinal[, 2:13], 1, function(x) max(x[x>=0]))
-# 
-# Determine the maximum by day over all of the days ignoring zeros
-#dfrwwglfinal$minimum <- apply(dfrwwglfinal[, 2:13], 1, function(x) min(x[x>=0]))
-#
-# Used during testing
-# View(dfrwwglfinal)
-#
-# Write the dataframe to a .csv file
-# write.csv(dfrwwglfinal,'dfrwwglfinal.csv', row.names = FALSE)
-#
-#
 # Read the workbooks and create a new dataframe with the values from Excel. Workbook name = Stan2010(4-party).xlsm.
 # The next lines of code build a dataframe named dfrwslfinal that is merged with dfrwwglfinal (the
 # dataframe for West Gravel Lakes) and dfrwslfinal (the dataframe for Standley Lake) into dfrwfinal.
 #
-# Load the data for January into dataframe dfrwtanifinal
+# Load the data for January into dataframe dfrwslfinal
 dfrwsljan1 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "A72:A102", col_names = "month_day")
 dfrwsljan1$month_day <- as.Date(as.character((dfrwtanijan1$month_day)))
 #
@@ -2004,7 +1969,6 @@ dfrwsljan12 <- read_excel("Stan2020(decree).xlsm", sheet = "Summary", range = "R
 dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan12)
 #
 dfrwsljan13 <- read_excel("Stan2021(decree).xlsm", sheet = "Summary", range = "R72:R102", col_names = "y_2021")
-#
 dfrwslfinal <- cbind(dfrwslfinal, dfrwsljan13)
 #
 # Load the data for February into dataframe dfrwslfinal
@@ -2547,3 +2511,36 @@ dfrwfinal <- dfrwfinal %>% select(month_day, everything())
 # # Used during testing
 # View(dfrwfinal)
 
+#
+# The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
+# 
+# dfrwwglfinal[, 2:13] <- dfrwwglfinal[, 2:13] * -1
+#
+# Replace all NA values with 0
+#
+# dfrwwglfinal[, 2:13] <- lapply(dfrwwglfinal[, 2:13], function(x) replace(x, is.na(x), 0))
+#
+# Compute the mean for each day over all the years ignoring zeros
+#
+#dfrwwglfinal$mean = apply(dfrwwglfinal[, 2:13], 1, function(x) mean(x[x>0]))
+#
+# Computing the mean on February 29th with all zero values for WGL  returns NaN. Hoping that this will clear up when there are not treatment values = 0 with all workbooks.
+# 
+# Compute the median for each day over all the years ignoring zeros
+#
+#dfrwwglfinal$median = apply(dfrwwglfinal[, 2:13], 1, function(x) median(x[x>0]))
+#
+# Computing the median on February 29th with all zero values for WGL  returns NA. Hoping that this will clear up when there are not treatment values = 0 with all workbooks.
+#
+# Determine the maximum by day over all of the days ignoring zeros
+#dfrwwglfinal$maximum <- apply(dfrwwglfinal[, 2:13], 1, function(x) max(x[x>=0]))
+# 
+# Determine the maximum by day over all of the days ignoring zeros
+#dfrwwglfinal$minimum <- apply(dfrwwglfinal[, 2:13], 1, function(x) min(x[x>=0]))
+#
+# Used during testing
+# View(dfrwwglfinal)
+#
+# Write the dataframe to a .csv file
+# write.csv(dfrwwglfinal,'dfrwwglfinal.csv', row.names = FALSE)
+#
