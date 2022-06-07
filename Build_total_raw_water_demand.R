@@ -2057,8 +2057,6 @@ dfrwslmar <- cbind(dfrwslmar, dfrwslmar13)
 #
 dfrwslfinal <- rbind(dfrwslfinal, dfrwslmar)
 #
-####  START HERE ###
-#
 # Load the data for April into dataframe dfrwslfinal
 dfrwslapr1 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "A166:A195", col_names = "month_day")
 dfrwslapr1$month_day <- as.Date(as.character((dfrwslapr1$month_day)))
@@ -2142,6 +2140,8 @@ dfrwslmay13 <- read_excel("Stan2021(decree).xlsm", sheet = "Summary", range = "R
 dfrwslmay <- cbind(dfrwslmay, dfrwslmay13)
 #
 dfrwslfinal <- rbind(dfrwslfinal, dfrwslmay)
+#
+### START HERE###
 #
 # Load the data for June into dataframe dfrwslfinal
 dfrwsljun1 <- read_excel("Stan2010(decree).xlsm", sheet = "Summary", range = "A229:A258", col_names = "month_day")
