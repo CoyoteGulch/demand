@@ -2441,27 +2441,36 @@ dfrwsldec <- cbind(dfrwsldec, dfrwsldec13)
 #
 dfrwslfinal <- rbind(dfrwslfinal, dfrwsldec)
 #
+### START HERE ### need to scrub in "final" dataframe.
 # # The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
 # 
 dfrwslfinal[, 2:13] <- dfrwslfinal[, 2:13] * -1
+dfrwwglfinal[, 2:13] <- dfrwwglfinal[, 2:13] * -1
+dfrwtanifinal[, 2:13] <- dfrwtanifinal[, 2:13] * -1
 #
-# Replace all NA values with 0
+# Change column 1 to character form mm-dd. The years are column headers in the "final" dataframes.
+dfrwslfinal[1] <- format(dfrwslfinal[1], "%m-%d") 
+dfrwwglfinal[1] <- format(dfrwwglfinal[1], "%m-%d")
+dfrwtanifinal[1] <- format(dfrwtanifinal[1], "%m-%d")
 #
-dfrwslfinal[, 2:13] <- lapply(dfrwslfinal[, 2:13], function(x) replace(x, is.na(x), 0))
+# Create the dfrwfinal data frame from dfrwslfinal. This will be combined with dfrwwglfinal and dfrwtanifinal for the complete set of draws on raw water.
+dfrwfinal <- dfrwslfinal
 #
-View(dfrwslfinal)
+# The add function strips the date column so add it back
+dfrwdatecolumn <- dfrwfinal[1]
 #
-# Add dfrwslfinal and dfrwfinal to complete the data set. Values are added because dfrwfinal is the summary for all draws on raw water.
-# 
-dfrwfinal <- dfrwfinal %>% select(-month_day) %>% add(dfrwslfinal %>% select(-month_day)) %>% mutate(type = dfrwslfinal$type)
-#dfrwfinal <- dfrwwglfinal %>% select(-month_day) %>% add(dfrwtanifinal %>% select(-month_day)) %>% mutate(type = dfrwtanifinal$type)
+# Add dfrwwglfinal and dfrwfinal to complete the data set. Values are added because dfrwfinal is the summary for all draws on raw water.
+dfrwfinal <- dfrwfinal %>% select(-month_day) %>% add(dfrwwglfinal %>% select(-month_day)) %>% mutate(type = dfrwwglfinal$type)
+dfrwfinal <- cbind(dfrwdatecolumn, dfrwfinal)
 #
-# add the month_day column to dfrwfinal
-# 
-dfrwfinal$month_day <- dfrwwglfinal$month_day
+dfrwfinal <- dfrwfinal %>% select(-month_day) %>% add(dfrwtanifinal %>% select(-month_day)) %>% mutate(type = dfrwtanifinal$type)
+dfrwfinal <- cbind(dfrwdatecolumn, dfrwfinal)
 #
-# Reorder dfrwfinal columns to move month_day to the first column
-dfrwfinal <- dfrwfinal %>% select(month_day, everything())
+# Write the dataframes to disk with the .csv extension
+write.csv(dfrwfinal,'dfrwfinal.csv', row.names = FALSE)
+write.csv(dfrwslfinal,'dfrwslfinal.csv', row.names = FALSE)
+write.csv(dfrwwglfinal,'dfrwwglfinal.csv', row.names = FALSE)
+write.csv(dfrwtanifinal,'dfrwtanifinal.csv', row.names = FALSE)
 #
 # # Compute the mean for each day over all the years ignoring zeros
 # #
