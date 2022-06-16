@@ -18,9 +18,12 @@ dfrwfinaltibble <- tibble(dfrwfinaltibble)
 dfrwfinaltibble <- dfrwfinaltibble %>% pivot_longer(c(y_2010, y_2011, y_2012, y_2013, y_2014, y_2015, y_2016, y_2017, y_2018, y_2019, y_2020, y_2021), names_to = "year", values_to = "acre_feet" )
 #
 # Change the month_day column adding the year so that ggplot can treat it as a date
-dfrwfinaltibble$month_day <- paste(dfrwfinaltibble$month_day, str_sub(x$year, 3, 6))
+dfrwfinaltibble$month_day <- paste(dfrwfinaltibble$month_day, str_sub(dfrwfinaltibble$year, 3, 6))
 # Used during testing
 View(dfrwfinaltibble)
+#
+# Remove the year column as it is no longer needed
+dfrwfinaltibble <- subset(dfrwfinaltibble, select = -year)
 #
 # Plot the data
 #p <- ggplot(dfrwfinaltibble)
