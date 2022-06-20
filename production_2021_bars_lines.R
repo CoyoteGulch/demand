@@ -23,6 +23,9 @@ dfinal21a <- dfinal21 %>%
   select(-(`2021`)) %>% # remove old col name
   pivot_longer(cols = Mean:y2021, names_to = "measure", values_to = "data") #tidy the data
 
+#Show the tidy data
+View(dfinal21a)
+
 p_2021 <- ggplot() +
   geom_col(data = filter(dfinal21a, measure == "y2021"),
            aes(y = data, x = Month_Day),
@@ -36,7 +39,7 @@ p_2021 <- ggplot() +
   scale_x_date(breaks = "1 month", minor_breaks = "1 day", labels=date_format("%b")) +
   labs(x = "Month", y = "acre-feet", title = "Treatment Plant Production 2021")
 # Save the plot to disk
-ggsave(filename = "p_f21.pdf", plot = p_2021, units = "in", width = 44, height = 34)
+ggsave(filename = "p_f21_bars.pdf", plot = p_2021, units = "in", width = 44, height = 34)
 #
 # Display the plot
 #
