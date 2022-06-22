@@ -20,6 +20,7 @@ dfrwfinaltibble <- dfrwfinaltibble %>% pivot_longer(c(y_2010, y_2011, y_2012, y_
 # Change the month_day column adding the year so that ggplot can treat it as a date
 dfrwfinaltibble$month_day <- paste(str_sub(dfrwfinaltibble$year, 3, 6), "-", dfrwfinaltibble$month_day, sep = "")
 dfrwfinaltibble$month_day <- as.Date(dfrwfinaltibble$month_day)
+#dfrwfinaltibblemean <- subset(dfrwfinaltibble$month_day, 6, 7)
 #
 # Remove the year column
 dfrwfinaltibble <- subset(dfrwfinaltibble, select = -year)
@@ -30,7 +31,24 @@ View(dfrwfinaltibble)
 # Plot the data
 p <- ggplot() + geom_col(data = dfrwfinaltibble, aes(y = acre_feet, x = month_day), color = "darkblue", fill = "white") +
   coord_cartesian(ylim = c(20,155)) +
-  scale_x_date(breaks = "1 month", minor_breaks = "1 day", labels=date_format("%b")) +
+#  scale_x_date(breaks = "1 month", minor_breaks = "1 day", labels=date_format("%b")) +
+#scale_x_date(breaks = "1 year", minor_breaks = "1 year", labels=date_format("%b")) +
+  scale_x_date(breaks = "1 year", minor_breaks = "1 month", labels=date_format("%Y")) +
   labs(x = "Year", y = "acre-feet", title = "Treatment Plant Draw on Water Water 2010 - 2021")
+#  sec_axis = sec_axis(trans = ~./325851.4 * 1000000)
 print(p)
 #
+# # # Compute the mean for each day over all the years
+# #
+# dfinal$Mean = apply(dfinal[2:12], 1, mean)
+# #
+# # Compute the median for each day over all the years
+# #
+# dfinal$Median = apply(dfinal[2:12], 1, median)
+# 
+# # Determine the maximum by day over all of the days
+# dfinal$Maximum <- apply(dfinal[2:12], 1, max)
+# #
+# # Determine the minimum value by day over all of the days
+# dfinal$Minimum <- apply(dfinal[2:12], 1, min)
+# 
