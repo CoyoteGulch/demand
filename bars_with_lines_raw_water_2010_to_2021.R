@@ -29,15 +29,21 @@ dfrwfinaltibble <- subset(dfrwfinaltibble, select = -year)
 View(dfrwfinaltibble)
 #
 # Plot the data
-p <- ggplot() + geom_col(data = dfrwfinaltibble, aes(y = acre_feet, x = month_day), color = "darkblue", fill = "white") +
-  coord_cartesian(ylim = c(20,155)) +
-#  scale_x_date(breaks = "1 month", minor_breaks = "1 day", labels=date_format("%b")) +
-#scale_x_date(breaks = "1 year", minor_breaks = "1 year", labels=date_format("%b")) +
-  scale_x_date(breaks = "1 year", minor_breaks = "1 month", labels=date_format("%Y")) +
-  labs(x = "Year", y = "acre-feet", title = "Treatment Plant Draw on Water Water 2010 - 2021")
-#  sec_axis = sec_axis(trans = ~./325851.4 * 1000000)
-print(p)
+coeff <- 325851.4
 #
+p_rw_2010_2_2021 <- ggplot(dfrwfinaltibble, aes(x = month_day)) +
+    geom_line(aes(y = acre_feet), color = "darkblue", fill = "white") +
+    scale_x_date(breaks = "1 year", minor_breaks = "1 month", labels = date_format("%Y")) +
+    scale_y_continuous(
+       name = "Acre Feet",
+       sec.axis = sec_axis(~.*coeff / 1000000, name = "MGD")
+    ) +
+    labs(x = "Year", y = "acre-feet", title = "Treatment Plant Draw on Raw Water 2010 - 2021")
+#
+print(p_rw_2010_2_2021)
+#
+# Save the plot to a .pdf
+ggsave(filename = "p_rw_2010_2_2021.pdf", plot = p_rw_2010_2_2021, units = "in", width = 44, height = 34)
 # # # Compute the mean for each day over all the years
 # #
 # dfinal$Mean = apply(dfinal[2:12], 1, mean)
