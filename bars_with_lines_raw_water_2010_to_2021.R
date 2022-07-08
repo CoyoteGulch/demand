@@ -14,11 +14,11 @@ library(tidyverse)
 dfrwfinal <- read.csv("dfrwfinal.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE, check.names = FALSE)
 dfrwfinaltibble <- tibble(dfrwfinal)
 #
+# Replace zeros in row 60 with na since February 29th does only occurs in leap years
+dfrwfinaltibble[60, 2:13] <- na_if(dfrwfinaltibble[60, 2:13], 0)
+#
 # Tidy dfrwfinaltibble
 dfrwfinaltibble <- dfrwfinaltibble %>% pivot_longer(c(y_2010, y_2011, y_2012, y_2013, y_2014, y_2015, y_2016, y_2017, y_2018, y_2019, y_2020, y_2021), names_to = "year", values_to = "acre_feet")
-#
-# Remove the rows with NAs caused by non leap years NOT NECESSARY B/C GGPLOT REMOVES THEM.
-#dfrwfinaltibble %>% drop_na()
 #
 # Change the month_day column adding the year so that ggplot can treat it as a date
 dfrwfinaltibble$month_day <- paste(str_sub(dfrwfinaltibble$year, 3, 6), "-", dfrwfinaltibble$month_day, sep = "")
