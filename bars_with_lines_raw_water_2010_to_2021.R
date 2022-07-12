@@ -14,23 +14,17 @@ library(tidyverse)
 dfrwfinal <- read.csv("dfrwfinal.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE, check.names = FALSE)
 dfrwfinaltibble <- tibble(dfrwfinal)
 #
-# Replace zeros in row 60 with na since February 29th does only occurs in leap years
+# Replace zeros in row 60 with na since February 29th only occurs in leap years
 dfrwfinaltibble[60, 2:13] <- na_if(dfrwfinaltibble[60, 2:13], 0)
 #
-# Calculate the means for each row and create a new column called 12_year_mean, cbind with the month_day column in dfrwfinal,
+# Calculate the means for each row and create a new column called 12_year_mean
 # change the column names to something more meaningful
-# Lose the month_day column to compute the meas
-dfrwfinaltibblemean <- dfrwfinaltibble[, 2:13]
-# Compute the means for each row, this drops all the columns except the mean values
-dfrwfinaltibblemean <- tibble(rowMeans(dfrwfinaltibblemean, na.rm = TRUE))
-# Add back the month_day column
-dfrwfinaltibblemean <- cbind(dfrwfinal[, 1], dfrwfinaltibblemean[1:366,])
-# Rename the columns
-colnames(dfrwfinaltibblemean) <- c("month_day", "12_year_mean")
+dfrwfinaltibble <- cbind(dfrwfinaltibble, rowMeans(dfrwfinaltibble[, 2:13], na.rm = TRUE))
+dfrwfinaltibble <- rename(dfrwfinaltibble, "12_year_mean" = "rowMeans(dfrwfinaltibble[, 2:13], na.rm = TRUE)")
 #
-# Used during testing
-View(dfrwfinaltibblemean)
-#
+
+#### START HERE. DETERMINE HOW TO PIVOT_LONGER INTO 2 COLUMNS
+
 # Tidy dfrwfinaltibble
 dfrwfinaltibble <- dfrwfinaltibble %>% pivot_longer(c(y_2010, y_2011, y_2012, y_2013, y_2014, y_2015, y_2016, y_2017, y_2018, y_2019, y_2020, y_2021), names_to = "year", values_to = "acre_feet")
 #
