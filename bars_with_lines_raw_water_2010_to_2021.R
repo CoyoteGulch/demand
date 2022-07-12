@@ -19,9 +19,13 @@ dfrwfinaltibble[60, 2:13] <- na_if(dfrwfinaltibble[60, 2:13], 0)
 #
 # Calculate the means for each row and create a new column called 12_year_mean, cbind with the month_day column in dfrwfinal,
 # change the column names to something more meaningful
+# Lose the month_day column to compute the meas
 dfrwfinaltibblemean <- dfrwfinaltibble[, 2:13]
+# Compute the means for each row, this drops all the columns except the mean values
 dfrwfinaltibblemean <- tibble(rowMeans(dfrwfinaltibblemean, na.rm = TRUE))
+# Add back the month_day column
 dfrwfinaltibblemean <- cbind(dfrwfinal[, 1], dfrwfinaltibblemean[1:366,])
+# Rename the columns
 colnames(dfrwfinaltibblemean) <- c("month_day", "12_year_mean")
 #
 # Used during testing
@@ -48,14 +52,11 @@ View(dfrwfinaltibble)
 # Plot the data
 coeff <- 325851.4
 #
-p_rw_2010_2_2021 <- ggplot(dfrwfinaltibble, aes(x = month_day)) +
-    geom_col(aes(y = acre_feet), color = "darkblue", fill = "white") +
+p_rw_2010_2_2021 <- ggplot(dfrwfinaltibble) +
+    geom_col(aes(x = month_day, y = acre_feet), color = "darkblue", fill = "white") +
     scale_x_date(breaks = "1 year", minor_breaks = "1 month", labels = date_format("%Y")) +
-    scale_y_continuous(
-       name = "Acre Feet",
-       sec.axis = sec_axis(~.*coeff / 1000000, name = "MGD")
-    ) +
-    labs(x = "Year", y = "acre-feet", title = "Treatment Plant Draw on Raw Water 2010 - 2021")
+    scale_y_continuous(name = "Acre Feet", sec.axis = sec_axis(~.*coeff / 1000000, name = "MGD")) +
+    labs(x = "Year", y = "acre-feet", title = "Treatment Plant Draw on Raw Water 2010 - 2021") 
 #
 print(p_rw_2010_2_2021)
 #
