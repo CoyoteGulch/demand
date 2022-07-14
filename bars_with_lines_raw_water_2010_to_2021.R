@@ -42,20 +42,26 @@ dfrwfinaltibblemeans[60, 2:13] <- na_if(dfrwfinaltibblemeans[60, 2:13], 0)
 # Load the 12 year means in each year column
 dfrwfinaltibblemeans[, 2:13] <- rowMeans(dfrwfinaltibblemeans[, 2:13], na.rm = TRUE)
 # Tidy dfrwfinaltibblemeans
+dfrwfinaltibblemeans <- dfrwfinaltibblemeans %>%pivot_longer(c(y_2010, y_2011, y_2012, y_2013, y_2014, y_2015, y_2016, y_2017, y_2018, y_2019, y_2020, y_2021), names_to = "year", values_to = "daily_mean")
+#
+# Change the month_day column adding the year so that ggplot can treat it as a date
+dfrwfinaltibblemeans$month_day <- paste(str_sub(dfrwfinaltibblemeans$year, 3, 6), "-", dfrwfinaltibblemeans$month_day, sep = "")
+dfrwfinaltibblemeans$month_day <- as.Date(dfrwfinaltibblemeans$month_day)
 #
 # Plot the data
 coeff <- 325851.4
 #
 p_rw_2010_2_2021 <- ggplot(dfrwfinaltibble) +
     geom_col(aes(x = month_day, y = acre_feet), color = "darkblue", fill = "white") +
-    scale_x_date(breaks = "1 year", minor_breaks = "1 month", labels = date_format("%Y")) +
+    geom_point(data = dfrwfinaltibblemeans, aes(x = month_day, y = daily_mean), color = "aquamarine", size = .01) +
+    scale_x_date(breaks = "1 year", minor_breaks = "1 week", labels = date_format("%Y")) +
     scale_y_continuous(name = "Acre Feet", sec.axis = sec_axis(~.*coeff / 1000000, name = "MGD")) +
     labs(x = "Year", y = "acre-feet", title = "Treatment Plant Draw on Raw Water 2010 - 2021") 
 #
 print(p_rw_2010_2_2021)
 #
 # Save the plot to a .pdf
-ggsave(filename = "p_rw_2010_2_2021.pdf", plot = p_rw_2010_2_2021, units = "in", width = 44, height = 34)
+ggsave(filename = "p_rw_2010_2_2021_w_12_month_daily_averages.pdf", plot = p_rw_2010_2_2021, units = "in", width = 44, height = 34)
 # # # Compute the mean for each day over all the years
 # #
 # dfinal$Mean = apply(dfinal[2:12], 1, mean)
