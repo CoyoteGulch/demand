@@ -56,7 +56,9 @@ p_rw_2010_2_2021 <- ggplot(dfrwfinaltibble) +
     geom_point(data = dfrwfinaltibblemeans, aes(x = month_day, y = daily_mean), color = "aquamarine", size = .01) +
     scale_x_date(breaks = "1 year", minor_breaks = "1 week", labels = date_format("%Y")) +
     scale_y_continuous(name = "Acre Feet", sec.axis = sec_axis(~.*coeff / 1000000, name = "MGD")) +
-    labs(x = "Year", y = "acre-feet", title = "Treatment Plant Draw on Raw Water 2010 - 2021") 
+    scale_color_manual(values = c("red", "yellow", "darkgreen", "darkviolet")) +
+    theme(legend.title = element_blank()) +
+    labs(x = "Year", y = "acre-feet", title = "Treatment Plant Draw on Raw Water 2010 - 2021")
 #
 print(p_rw_2010_2_2021)
 #
