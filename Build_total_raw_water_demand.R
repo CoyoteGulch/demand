@@ -14,7 +14,7 @@
 # 
 # The relevant files are copied from the Accounting share S:\ID\WR\Accounting\ to the Supply and Demand Planning share S:\ID\WR\Supply and Demand Planning\Demand Forecasting\demand\ to avoid the possibility of corrupting the historical Accounting files.
 #
-# Data is extracted in table format and then tidied using pivot_long.
+# Data is extracted in table format and then tidied using pivot_long.y
 # Load the necessary R libraries
 #
 library(dplyr)
@@ -2441,8 +2441,7 @@ dfrwsldec <- cbind(dfrwsldec, dfrwsldec13)
 #
 dfrwslfinal <- rbind(dfrwslfinal, dfrwsldec)
 #
-### START HERE ### need to scrub in "final" dataframe.
-# # The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
+# The values from the workbooks are negative, change them to positive. They are inflows to the treatment plant and come in negative because they are outflows from the reservoir.
 # 
 dfrwslfinal[, 2:13] <- dfrwslfinal[, 2:13] * -1
 dfrwwglfinal[, 2:13] <- dfrwwglfinal[, 2:13] * -1
